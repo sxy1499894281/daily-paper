@@ -143,7 +143,7 @@ def to_legacy_issue(issue: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-HTML_TEMPLATE = """<!doctype html>
+HTML_TEMPLATE = r"""<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
