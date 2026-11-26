@@ -24,8 +24,9 @@ description: Portable daily paper curation, verification, and bookshelf publishi
 
 > 所有命令均以本仓库根目录为工作目录，且零第三方 Python 依赖（Python 3.9+ 标准库即可运行）。
 
-### Step 1：确定北京时间日期并加载偏好与历史
+### Step 1：同步仓库、确定北京时间日期并加载偏好与历史
 
+- 先执行 `git pull --rebase origin main`，确保拉取最新的个人偏好与阅读反馈。
 - 显式确定目标日期 `YYYY-MM-DD`（北京时间 `Asia/Shanghai`，不要依赖机器默认时区）。
 - 读取：
   - `profile/topics.json`（主题、Tier 优先级、锚点、检索词、排除边界）
@@ -36,7 +37,7 @@ description: Portable daily paper curation, verification, and bookshelf publishi
 ### Step 2：运行确定性候选采集脚本
 
 ```bash
-python3 scripts/fetch_candidates.py --date YYYY-MM-DD --days 14 --output /tmp/daily-paper-candidates-YYYY-MM-DD.json
+python3 scripts/fetch_candidates.py --date YYYY-MM-DD --days 14 --max-per-query 6 --hf-days 3 --enrich-limit 35 --output /tmp/daily-paper-candidates-YYYY-MM-DD.json
 ```
 
 脚本会自动：
@@ -81,12 +82,18 @@ python3 scripts/validate_issue.py issues/YYYY-MM-DD.json
 python3 scripts/render_bookshelf.py --issues-dir issues --output dist/index.html
 ```
 
-然后按目标环境选择发布适配器（详见 `publishers/README.md`）：
-- **ZhiWei 静态托管（推荐免登录）**：读取 `dist/index.html` 调用 `publish_zhiwei_static_report`（可固定 `publicPath` 如 `daily-paper/index.html` 实现每日更新同一主页 URL）。
-- **GitHub Pages**：提交 `issues/YYYY-MM-DD.json` 推送至 `main`，由 GitHub Actions 自动渲染并部署。
-- **旧书架兼容导出**：运行 `python3 scripts/render_bookshelf.py --export-legacy issues/YYYY-MM-DD.json` 生成旧格式 JSON。
+默认发布路径（GitHub Pages）：
+```bash
+git add issues/YYYY-MM-DD.json
+git commit -m "feat(issues): publish YYYY-MM-DD daily paper digest"
+git push origin main
+gh run list --repo sxy1499894281/daily-paper --limit 3
+```
+推送至 `main` 后，GitHub Actions 会自动校验并部署到 https://sxy1499894281.github.io/daily-paper/ 。
 
-发布后执行回读校验，确认日期、首推、栏目顺序、篇数和关键链接无误。
+其他可选发布适配器详见 `publishers/README.md`（如 ZhiWei 静态托管或旧书架兼容导出 `python3 scripts/render_bookshelf.py --export-legacy issues/YYYY-MM-DD.json`）。
+
+发布后执行回读校验，确认部署成功以及日期、首推、栏目顺序、篇数和关键链接无误。
 
 ## 用户维护偏好与反馈的快捷方式
 
