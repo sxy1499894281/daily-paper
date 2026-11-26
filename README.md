@@ -1,6 +1,9 @@
 # Daily Paper · 每日论文推荐与跨 Agent Skill 仓库
 
-一个**可迁移到任意 Agent（Antigravity / Codex / Claude Code / Cursor / GitHub Actions）**的个人每日论文推荐系统。你的研究偏好、锚点论文、阅读反馈、历史归档和确定性工具脚本全部沉淀在这个私有 Git 仓库里，一次维护，处处生效。
+- **在线书架主页（GitHub Pages）**：https://sxy1499894281.github.io/daily-paper/
+- **每日更新流程**：提交 `issues/YYYY-MM-DD.json` 推送至 `main` 后，GitHub Actions 自动校验并更新在线书架，保留全部历史期号。
+
+一个**可迁移到任意 Agent（Antigravity / Codex / Claude Code / Cursor / GitHub Actions）**的个人每日论文推荐系统。你的研究偏好、锚点论文、阅读反馈、历史归档和确定性工具脚本全部沉淀在这个 Git 仓库里，一次维护，处处生效。
 
 ## 核心特点
 

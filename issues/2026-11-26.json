@@ -1,0 +1,1311 @@
+{
+  "schema_version": "1.1",
+  "date": "2026-11-26",
+  "timezone": "Asia/Shanghai",
+  "lead": {
+    "paper_id": "arxiv:2611.28947",
+    "reason": "直击真实桌面/网页 Computer-Use Agent 的核心工程痛点——VLM 推理延迟导致的“感知-动作不同步”：仅用 0.8B 轻量级流式监控器外挂在任意未改动 VLM 外部，在 OSWorld-Verified 上削减 33% 非推理耗时和 53% 浪费时间，并在动态网页基准 DynaCU-Bench 上把成功率从 39.5% 提到 44.2%。",
+    "section_ref": "Section 3 (Method), Section 4 (Experiments)"
+  },
+  "sections": [
+    {
+      "topic": "Computer Use",
+      "priority": "tier1",
+      "papers": [
+        {
+          "id": "arxiv:2611.28947",
+          "title": "Don't Sleep, Keep Watch: Proactive Perception for Computer-Use Agents",
+          "authors_or_org": "Jiaqi Su, Jie-Jing Shao, Yichen Liu, Long-Kai Huang, Haiyan Yin",
+          "published_on": "2026-11-21",
+          "url": "https://arxiv.org/abs/2611.28947",
+          "repo_url": "https://github.com/SuJQ0722/NightWatch",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "GUI Agent"
+          ],
+          "tags": [
+            "open-code",
+            "real-eval",
+            "multi-step-recovery"
+          ],
+          "intro": "给任意 Computer-Use Agent 外挂一个 0.8B 的“值夜监控器”持续盯屏，界面一变就主动打断或作废过期动作，显著减少无效等待和过期点击。",
+          "abstract_zh": "基于视觉语言模型（VLM）的计算机使用智能体（CUA）正越来越多地承担实时桌面、网页与移动端上的长程任务，而屏幕本身会持续自发变化。然而，现有 CUA 缺乏实时态势感知：它们通过离散快照感知环境，加之 VLM 较高的推理延迟与高度动态的界面叠加，形成了“感知-动作鸿沟”，往往在动作真正执行前所观察的界面状态已经过时。为弥合这一鸿沟，作者提出即插即用框架 NightWatch，在不改动底层智能体模型、提示词或动作空间的前提下赋予任意 CUA 连续、时间对齐的感知能力。NightWatch 将大 VLM 智能体与轻量级 System-1 模型 NightWatch-0.8B 耦合，由后者低延迟流式监控界面状态，使每次决策都立足于当前画面而非陈旧快照，在保持任务成功率的同时减少过期动作与空等。在桌面与动态网页环境（OSWorld-Verified 和 DynaCU-Bench）上的实验表明，仅 0.8B 参数的监控器就能在 OSWorld 上将非推理挂钟时间减少 33%、浪费时间减少 53% 且成功率持平，在 DynaCU-Bench 上将大 VLM 智能体成功率从 39.5% 提升至 44.2%，在同为纯截图输入条件下效率优于 AOI、PUSV 等被动观察基线以及参数量大 30 倍以上的 System-1 决策模型。结果表明感知的“时机”与“内容”同等关键。",
+          "method": "在 Harness 层于未修改的 VLM 与环境之间插入轻量级流式监控器 NightWatch-0.8B：持续读取近期帧流与待执行动作，对一组固定通用状态问题输出概率，再用固定阈值将概率转化为三类控制信号——中断当前推理（interrupt）、作废过期动作（void）与主动唤醒观察（wake）。与传统定频轮询或把监控塞进大模型提示词的做法不同，它完全解耦了快感知与慢推理。",
+          "results": "真实在线交互评测（作者自报）：在 OSWorld-Verified 上非推理墙钟时间降低 33%、浪费时间降低 53%，任务成功率与原 Agent 持平；在动态网页基准 DynaCU-Bench 上，配合大 VLM 将成功率从 39.5% 提升至 44.2%（+4.7 个百分点），并在相同纯截图输入下优于 AOI、PUSV 及参数量大 30 倍以上的 System-1 决策模型。",
+          "limitation": "触发逻辑依赖针对通用问题库设定的固定阈值，在跨类应用（如高频动画 vs 静态办公软件）或极端网络抖动场景下仍可能面临误打断与漏触发的权衡。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 100,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.28947",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239430552",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 4,
+                "source": "GitHub",
+                "url": "https://github.com/SuJQ0722/NightWatch",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.34232",
+          "title": "OS-Omni: Benchmarking Generalist Computer-Using Agents on Long-Horizon Workflows Across Platforms",
+          "authors_or_org": "Hui Shen, Yunta Hsieh, Jianing Ma, Zhuoran Yin, Zhuhan Bao",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34232",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "benchmark",
+            "real-eval",
+            "verifiable-reward",
+            "no-code-yet"
+          ],
+          "intro": "横跨 Windows/Ubuntu/macOS/iOS/Android/Web 六端及跨设备工作流的超长程真实环境基准（平均 67.5 步，远超 OSWorld 的 15 步），揭示前沿模型在 Linux 超越人类但在 macOS/iOS 仍落后 25–33 个百分点。",
+          "abstract_zh": "计算机使用智能体正越来越多地被期待完成真实用户目标而非孤立的 GUI 动作。然而，现有基准往往将网页、移动端或桌面环境彼此隔离，难以判断单个通用智能体能否执行跨越多个操作系统并涉及持久化应用状态的长程工作流。作者提出 OS-Omni，一个覆盖 Windows、Ubuntu、macOS、iOS、Android 与 Web 的实时跨平台基准与执行环境。OS-Omni 按每批 300 个任务分波次发布；本文聚焦首版 v1，包含每个平台 48 个任务以及 12 个桌面与 Android 手机联动的跨平台工作流。OS-Omni 提供可复现初始化、各平台适配器、轨迹日志和可执行终态评估器，并内置账号、购物车、预算、日历、消息等受控后端服务以承载持久状态。人类评测显示 OS-Omni 任务平均需 67.54 步交互，显著高于 OSWorld 的 15.0 步参考值。在 v1 上，最强被测智能体 Claude Opus 5.5 平均成功率为 68.5%，比人类参考值 77.3% 低 8.8 个百分点；且各平台极不均衡，前沿模型在 Linux 上超过人类，但在 iOS 和 macOS 上落后超过 25 个百分点。这表明当前智能体距离跨平台稳健长程操作仍有明显差距。",
+          "method": "构建统一跨平台实时执行框架与受控服务后端，涵盖 6 大单端平台与桌面+Android 联动工作流；每道题配备自然语言目标、可复现状态初始化脚本和基于最终环境状态的可执行评估器（final-state evaluator）。",
+          "results": "真实在线交互评测（v1 共 300 任务，作者自报）：人类平均需 67.54 步、成功率 77.3%；最强模型 Claude Opus 5.5 平均成功率 68.5%（落后 8.8 个百分点），其中在 Linux 上三款前沿模型均超过人类，但 iOS 与 macOS 上最佳成绩仍分别落后人类 33.5 和 25.6 个百分点。",
+          "limitation": "版权与硬件限制导致 Windows 任务需用户自行激活、macOS/iOS 任务依赖苹果硬件，复现与大规模云端并行评测门槛较高；截至观察日未查到公开代码仓库链接。",
+          "heat": {
+            "unavailable": "近期新作（2026-11-25 发布），截至 2026-11-26 在 OpenAlex、Hugging Face Papers 与 GitHub 暂无可核验记录。"
+          }
+        },
+        {
+          "id": "arxiv:2611.33148",
+          "title": "CoT-Proxy: Cross-Format Transfer for Distilling Long-Horizon Policies",
+          "authors_or_org": "Dawid J. Kopiczko, Tijmen Blankevoort, Yuki M. Asano",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.33148",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "real-eval",
+            "multi-step-recovery",
+            "no-code-yet"
+          ],
+          "intro": "发现蒸馏长程 Agent 策略根本不需要闭源教师的隐藏 CoT：训练时留空思考块+附简短推理摘要（CoT-Proxy）并加自身回放 KL 约束，推理时开启思考即可把 Qwen3-4B 在 AppWorld 从 7% 拉到 48%。",
+          "abstract_zh": "推理模型可通过强化学习或更廉价的微调（基于更强教师模型的轨迹，同时包含思维链与动作）成为长程智能体。标准微调做法会同时模仿思维链和动作，但最强教师往往是隐藏思维链的闭源 API 模型。作者证明完全可以省略教师思维链，仅从动作轨迹蒸馏长程策略：训练时将学生模型的推理块留空，并用基于自身生成回放池的 KL 损失抑制相对初始模型的漂移。令人意外的是，在空推理块轨迹上学到的策略会迁移到推理时开启思考的模式——学生以自己的风格思考，却做出像教师一样的动作，作者称此现象为跨格式迁移（cross-format transfer）。仅蒸馏 Qwen3.6-27B 的动作就把 Qwen3-4B 在 AppWorld 上的任务成功率从 7% 提到 18%，把 Qwen3-32B 从 12% 提到 25%。进一步引入放在空推理块之后的简短教师推理摘要（CoT-proxy），可将 Qwen3-4B 推至 35%。由于动作和 CoT-proxy 都不依赖隐藏 CoT，该配方可直接用于闭源教师：从 GPT-5.6 Luna 的可见输出和 API 推理摘要蒸馏后，Qwen3-4B 在 AppWorld 上从 7% 升至 48%，在 SWE-bench Verified 上从 3% 升至 28%。",
+          "method": "将教师轨迹中的动作（Python/Bash）设为目标，学生 `<think></think>` 区块在 SFT 阶段保持为空，并可选在思考块后加入教师 API 返回的简短 CoT-proxy 摘要；同时在学生自身历史生成构成的 replay buffer 上施加 KL 散度正则，防止破坏学生原有推理能力，测试时重新开启学生自身的思维链推理。",
+          "results": "真实环境评测（作者自报）：AppWorld test-normal（168 任务/56 场景）上，仅动作蒸馏让 Qwen3-4B 从 7%→18%、Qwen3-32B 从 12%→25%；加入 CoT-proxy 后 Qwen3-4B 达 35%；蒸馏闭源 GPT-5.6 Luna 可见输出与 API 摘要后，Qwen3-4B 在 AppWorld 达 48%（+41 pp）、在 SWE-bench Verified（500 任务）上从 3% 升至 28%（+25 pp）。",
+          "limitation": "依赖强教师模型本身在目标环境中的可见输出或 API 摘要，目前主要验证于代码/API 交互环境（AppWorld、SWE-bench），在纯视觉 GUI 动作空间中的迁移效果尚未验证；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 14,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.33148",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239856774",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.34466",
+          "title": "EgoUseBench: Benchmarking Computer-Use Agents under Evolving First-Person Contexts",
+          "authors_or_org": "Yurun Chen, Biao Yi, Qihang Yu, Keting Yin, Shengyu Zhang",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34466",
+          "repo_url": "https://github.com/YurunChen/EgoUseBench",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "Personal Agent"
+          ],
+          "tags": [
+            "benchmark",
+            "open-code",
+            "real-eval"
+          ],
+          "intro": "把 Computer Use 从显式指令延伸到智能眼镜等第一视角持续流（Ego Use），基于 74 小时真实录像构造 693 个动态需求演化网页任务，发现在线第一视角下模型成功率直降 26.3%。",
+          "abstract_zh": "智能眼镜等 AI 穿戴设备把智能体的上下文从数字环境延伸到了用户的物理周围环境，使计算机任务可以从用户持续进行的日常活动中产生，而不再仅由显式文字指令触发（作者称为 Ego Use）。然而第一视角观察受佩戴者视野限制，信息往往不完整或有歧义，随着新画面到来，智能体必须修正对物理语境与用户意图的理解，并重估此前已执行的数字操作是否依然有效。作者提出 EgoUseBench，在三种上下文层次（传统 Computer-Use、离线预录 Offline Ego Use、持续演化 Online Ego Use）下评测智能体。基于超过 74 小时真实第一视角录像构建了 693 个任务，分别追踪第一视角观测、用户需求与网站状态，并按信息变化方式细分为 Graft（需求变更）、Refresh（新观测到来）和 Clarify（主动追问）。评测主流先进模型发现，Online Ego Use 的平均成功率比传统 Computer-Use 低 26.3%，暴露出智能体难以随演化上下文持续对齐网页状态的核心短板。",
+          "method": "以网页终态校验为核心，解耦追踪第一视角视频流、用户需求变更与网站状态（如购物车条目与数量），将执行过程中的动态演化分为 Graft / Refresh / Clarify 三类协议，允许智能体等待或先执行再修正状态。",
+          "results": "真实网站交互评测（693 任务，作者自报）：受测前沿模型在 Online Ego Use 设定下的平均任务成功率较显式指令 Computer-Use 下降 26.3%，常见失败模式是找到新选项后未清理先前已失效的网站操作残留。",
+          "limitation": "数字执行端目前聚焦在受控网站状态（如电商/信息操作），尚未覆盖跨多桌面软件的 OS 级复杂操作。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 14,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.34466",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 23,
+                "source": "GitHub",
+                "url": "https://github.com/YurunChen/EgoUseBench",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2404.07972",
+          "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+          "authors_or_org": "Tianbao Xie, Danyang Zhang, Jixuan Chen, Xiaochuan Li, Siheng Zhao",
+          "published_on": "2024-04-11",
+          "url": "https://arxiv.org/abs/2404.07972",
+          "repo_url": "https://github.com/xlang-ai/OSWorld",
+          "lane": "popular_backlist",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "GUI Agent",
+            "环境规模化"
+          ],
+          "tags": [
+            "benchmark",
+            "open-env",
+            "open-code",
+            "real-eval",
+            "verifiable-reward"
+          ],
+          "intro": "桌面 Computer-Use 领域最具奠基性的真实虚拟机评测环境与基准（369 个 Ubuntu + 43 个 Windows 开放域跨应用任务），今日多篇新作（NightWatch、OS-Omni、PACT、CUA-SEE）仍以其为核心参照。",
+          "abstract_zh": "能够以极少人工干预完成复杂计算机任务的自主智能体有望革新交互方式并提升生产力。但既有基准要么缺乏真实交互环境，要么局限于单一应用或领域，难以反映真实计算机使用的多样性与复杂度。为此作者推出 OSWorld——首个面向多模态智能体的可扩展真实计算机环境，支持在 Ubuntu、Windows、macOS 等系统上进行任务初始化、基于执行的评测和交互学习。基于该环境构建了包含 369 个真实桌面与网页跨应用及 OS 文件 I/O 任务的基准，每题附带细粒度初始状态配置与自定义执行式评测脚本。对主流 LLM/VLM 智能体的广泛测试显示，人类可完成 72.36% 以上任务，而当时最强模型仅达 12.24%，主要受限于 GUI 定位与操作知识。OSWorld 开源了代码、环境、基线与数据，成为多模态通用计算机智能体的重要基础设施。",
+          "method": "基于虚拟机快照构建可复位真实操作系统沙盒，封装截图/无障碍树观测与键鼠/脚本动作接口，为每道开放域真实任务编写确定性的初始状态配置与终态执行检查脚本（execution-based evaluator）。",
+          "results": "真实 OS 在线评测（369 个 Ubuntu 任务，作者自报原始基线）：人类完成率 72.36%（中位耗时 111.94 秒），论文发表时最强多模态 Agent 仅 12.24%；该基准已演变为当前 GUI/CUA 论文的事实标准评测锚点。",
+          "limitation": "以 369 题静态任务集为主，随着前沿模型得分不断逼近上限，存在任务难度天花板、部分评测脚本噪声（催生了 OSWorld-Verified）以及单机虚拟机并行开销较大的问题。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 2035,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W4415797693",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "votes",
+                "count": 51,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2404.07972",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 3278,
+                "source": "GitHub",
+                "url": "https://github.com/xlang-ai/OSWorld",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          },
+          "backlist_evidence": [
+            {
+              "summary": "OpenAlex 记录学术引用达 2,035 次，官方 GitHub 仓库达 3,278 星，仍是 2026 年桌面 CUA/GUI 论文最核心的通用评测基础设施。",
+              "url": "https://github.com/xlang-ai/OSWorld"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "多模态编程",
+      "priority": "tier2",
+      "note": "今日覆盖 Image→Code（WebVibe、ChartInt）、Code→Image（Nemotron-Labs-VisualCreation）、3D Code（3DCodeFactory）；Code→Video 与 Video→Code 方向在近 14 天检索中暂未发现符合可执行代码约束的合格新稿。",
+      "papers": [
+        {
+          "id": "arxiv:2611.34292",
+          "title": "WebVibe: Multimodal Interactive Website Generation via Reverse Synthesis and Visual Self-Distillation",
+          "authors_or_org": "Tianxiang Jiang, Sheng Xia, Yilin Long, Kanghui Tian, Linquan Wu",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34292",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "directions": [
+            "Image→Code"
+          ],
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "executable-code",
+            "online-rl",
+            "verifiable-reward",
+            "no-code-yet"
+          ],
+          "intro": "把交互式多页网站生成的数据合成方向反过来（先在浏览器跑通交互代码再反推多模态需求规范，造出 3.15 万站点语料），再结合状态转移拼图自蒸馏 RL，9B 模型单次生成就能追平万亿级多轮 Coding Agent。",
+          "abstract_zh": "尽管多模态大模型已能把单张截图转成静态 HTML，但从设计规范生成可交互的功能网站仍受困于多页路由和有状态组件转换。作者发现现有训练管线存在两大瓶颈：（1）正向合成（X→Y）先写需求再写代码，导致未实现或偏离的需求变成监督噪声；（2）强化学习里的标量奖励丢弃了浏览器回放过程中丰富的状态转换信息。为此作者提出 WebVibe 与 Interactive-SDPO 来训练 InteractiveCoder。WebVibe 将合成反转为 Y→X：先在浏览器中核验跨页与页内交互，再严格从回放确认的状态反推多模态输入，构建出包含 31,542 个站点、带可复用执行契约的 WebVibe-32K 语料；Interactive-SDPO 则让权重共享的自教师基于回放轨迹与 2×2 状态转换拼图提供 token 级监督且零推理开销。在公开基准 Vision2Web L2 上，单次生成的 InteractiveCoder-9B 将基础模型功能分提升近 3 倍（20.2→55.2 FS），并以少 111 倍参数和少 78 倍 token 追平 1T 参数编码智能体；在自建 WebVibeBench 上，4B 与 9B 版本均领先全部基线超 23 分。",
+          "method": "两阶段训练：Stage 1 用反向浏览器验证合成的 WebVibe-32K（31,542 站点）做 SFT 掌握多页路由与视觉对齐；Stage 2 进行浏览器在环 RL（Interactive-SDPO），把交互回放轨迹和 2×2 状态转换视觉拼图喂给权重共享的自教师，为策略提供细粒度 token 级蒸馏监督。",
+          "results": "可执行浏览器回放评测（作者自报）：Vision2Web L2（66 个多页项目）上，单次生成的 InteractiveCoder-9B 功能分从 20.2 提至 55.2 FS，持平 1T 参数多轮编码 Agent 且参数少 111 倍、token 少 78 倍；在 200 站点/87 领域的 WebVibeBench 上，4B 与 9B 均超全部基线 23 分以上。",
+          "limitation": "目前在 WebVibeBench 上属于分布内优势更突出，复杂后端业务逻辑或实时接口交互仍超出纯前端浏览器回放验证范畴；截至观察日未查到公开仓库或数据集直链。",
+          "heat": {
+            "unavailable": "近期新作（2026-11-25 发布），截至 2026-11-26 在 OpenAlex、Hugging Face Papers 与 GitHub 暂无可核验记录。"
+          }
+        },
+        {
+          "id": "arxiv:2611.28783",
+          "title": "3DCodeFactory: Scaling Training Data for 3D Code Agents",
+          "authors_or_org": "Zhaoyu Wang, Xueru Wen, XingYu Li, Jie Lou",
+          "published_on": "2026-11-21",
+          "url": "https://arxiv.org/abs/2611.28783",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "directions": [
+            "3D Code"
+          ],
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "executable-code",
+            "scalable-synthesis",
+            "no-code-yet"
+          ],
+          "intro": "解决 3D 编程 Agent 缺多轮复杂场景训练数据的痛点：从纯文本先生成 3D 参考图锚定规格与多维评分细则，自动合成并筛选 5,045 条多轮 3D 代码交互轨迹，微调 27B 模型反超 2.4T 旗舰。",
+          "abstract_zh": "随着代码智能体的发展，其目标正从静态单物体 3D 网格扩展到结构完整、复杂可交互的 3D 场景。但现有数据集大多依赖转换或标注已有 3D 资产，多为静态单物体的单轮代码数据，难以扩展任务多样性与场景复杂度。作者提出自动化数据合成框架 3DCodeFactory，直接从海量原始文本（如扩散提示词与商品描述）构造多样复杂的 3D 训练数据：先用图像生成器合成 3D 参考图作为视觉锚点，引导生成具体建模规范与交互功能需求，同时基于参考图和需求联合构建视觉、规范与功能三类评分细则，自动打分并过滤多轮智能体 rollout。据此发布包含 5,045 个高质量任务与多轮轨迹的 3DCodeFactory-Data。在该数据上微调 Qwen3.5-9B 和 Qwen3.8-27B，在 BlenderWorld、P3D-Bench 和 3DCodeBench 上均显著提升且优于现有开源 3D 代码数据集，27B 模型综合表现甚至超过同系列 2.4T 旗舰 Qwen3.8-Max。",
+          "method": "以文生图产出 3D 参考图作视觉锚点，再派生建模规范、交互需求及三维度（视觉/规范/功能）自动评分 rubric，用来对多轮 3D 代码 Agent rollout 进行离线验证与过滤，产出 5,045 条多轮交互轨迹用于微调。",
+          "results": "多基准评测（BlenderWorld、P3D-Bench、3DCodeBench，作者自报）：在 3DCodeFactory-Data 上微调 Qwen3.5-9B 与 Qwen3.8-27B 一致超越现有开源 3D 代码集微调基线，27B 版本整体超越 2.4T 参数 Qwen3.8-Max（注：摘要与抓取节选未给出各表精确分项数字，具体分数需查正文 Table）。",
+          "limitation": "作者在结论中明确指出，当前合成与 rubric 过滤管线仅用于离线轨迹筛选与 SFT，尚未接入在线强化学习闭环；截至观察日未查到已公开的 GitHub 仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239391956",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.31358",
+          "title": "Nemotron-Labs-VisualCreation: Pixel as Code for Agentic Visual Creation",
+          "authors_or_org": "Guo Chen, Fuxiao Liu, Haoqin Tu, Yiyang Zhou, Andrew Tao",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.31358",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "directions": [
+            "Code→Image",
+            "Image→Code"
+          ],
+          "tags": [
+            "executable-code",
+            "direct-render",
+            "no-code-yet"
+          ],
+          "intro": "NVIDIA 提出“Pixel as Code”统一视觉创作智能体框架，把栅格图像 token 与可执行结构化代码（SVG/图表/网页/文档）接入同一套生成-渲染-视觉审校修复闭环。",
+          "abstract_zh": "视觉创作既需要富有表现力的画面，也需要对文字、排版和结构的精确控制。作者提出 Nemotron-Labs-VisualCreation，通过“Pixel as Code”理念将两类能力统一：栅格图像用离散视觉 token 表示，结构化视觉产物（矢量图、网页、文档等）用显式可执行程序表示，并经由共享的生成与渲染接口接入视觉反馈。Nemotron 原生 Harness 协调路由规划、栅格候选筛选，并对可编辑结构化与混合产物执行基于浏览器渲染审校的定点修复。为此团队构建了图像分词器 Nemotron-Labs-Image-Tokenizer、自回归生图模型 Nemotron-Labs-Image-30B-A3B 及结构化视觉代码模型家族 Nemotron-Labs-VisionCode。在约 17.8 万张跨六域图像上，分词器重建 PSNR 从 Emu3.5 IBQ 的 26.08 dB 提至 29.57 dB，A100 上单样本编解码快 7.13× 与 10.93×；VisionCode 变体在 Chart2Code、MMSVG、Design2Code 和 Image2Struct 综合得分超过 Kimi K3.1 Pro；系统级配置将 GenEval2 Soft-TIFA GM 从 31.71 提至 52.56，整体表现与 GPT Image 2、Nano Banana Pro 具备竞争力。",
+          "method": "路由器根据需求决定走栅格路径、结构化代码路径或混合路径；结构化与混合路径先建立布局契约并生成可执行代码，随后由 Nemotron-3.5-Super-VL 结合确定性渲染检查对渲染结果做根因归因并定向修复。",
+          "results": "多基准评测（作者自报）：178K 图像重建 PSNR 26.08→29.57 dB（编解码提速 7.13×/10.93×）；VisionCode 120B 变体在 Chart2Code/MMSVG/Design2Code/Image2Struct 综合超 Kimi K3.1 Pro；系统级 GenEval2 Soft-TIFA GM 从 31.71 提至 52.56。",
+          "limitation": "属于多模型协同的重型系统（含 30B-A3B 图像模型与 120B 视觉代码模型及多轮审校回路），推理开销大且截至观察日尚未放出开源代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 82,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.31358",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.31345",
+          "title": "Beyond Static Charts: Benchmarking Interactive Chart-to-Code Generation for MLLMs",
+          "authors_or_org": "Yuhan Bian, Haoyu Liu, Siyu Li, Hanpei Guo, Jingrong Gao",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.31345",
+          "repo_url": "https://github.com/bianyh/ChartInt",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "directions": [
+            "Image→Code"
+          ],
+          "tags": [
+            "benchmark",
+            "executable-code",
+            "open-code",
+            "verifiable-reward"
+          ],
+          "intro": "首个面向“可交互图表”的 Chart-to-Code 基准 ChartInt（2,779 题），用预设状态快照协议把 hover/高亮/tooltip 等动态交互变成可确定性复现评测，暴露出 MLLM 静强动弱的明显落差。",
+          "abstract_zh": "多模态大模型在图表转代码任务上进展迅速，但现有基准几乎只测静态图表，忽视了支持更丰富数据探索的交互式图表。与只看视觉一致性的静态任务不同，交互式图表转代码要求代码在一系列用户交互后呈现出正确的行为与状态演化，使传统单步评估失效。作者提出首个面向交互式图表转代码的基准 ChartInt，包含 2,779 个精标样本，覆盖悬停、高亮、工具提示等常见交互模式，并纳入数据更新、样式微调和跨图风格迁移等编辑任务。为可靠评测交互行为，论文设计“预设状态快照协议”，通过确定性触发交互事件并抓取目标状态快照，将动态行为转化为可复现评估目标，从语义与样式多维打分。实验表明现有 MLLM 在静态图表上表现良好，但在交互逻辑与真实编辑任务上大幅下滑。",
+          "method": "构建 6 类任务共 2,779 样本（静态重建、交互核验、编辑修改），在浏览器中按 Preset State Snapshot Protocol 确定性触发 hover/click 等事件并比对各交互状态下的渲染与语义一致性。",
+          "results": "可执行代码与多状态评测（2,779 样本，作者自报）：验证了显著的“静态-动态落差”，主流 MLLM 在交互逻辑实现与多轮图表编辑上普遍明显退化（摘要与抓取正文未列出单模型精确得分表，具体数值见原文 Table 5）。",
+          "limitation": "预设事件序列主要覆盖标准图表交互（hover/tooltip/highlight），对复杂多视图联动筛选或自定义前端框架交互覆盖仍有限。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239841256",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 1,
+                "source": "GitHub",
+                "url": "https://github.com/bianyh/ChartInt",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "GUI Agent",
+      "priority": "tier1",
+      "papers": [
+        {
+          "id": "arxiv:2611.30235",
+          "title": "PixelOne: From Options to Pixels in a Single Forward for GUI Grounding",
+          "authors_or_org": "Kanghui Tian, Shuai Dong, Yuhan Zhu, Congcong Wang, Ji Zhao",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30235",
+          "repo_url": "https://github.com/tiankanghui/PixelOne",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "open-code",
+            "offline-only"
+          ],
+          "intro": "把“多步缩放搜索教师”的空间定位知识蒸馏进单次前向学生，原生分辨率一枪定位到像素级：35B-A3B 模型四基准均分 83.8%，单次推理仅 0.43 秒。",
+          "abstract_zh": "GUI 定位要求高精度且低延迟。近期单次前向定位模型（如 GUI-Decisions、GUI-Swift）采用固定全局分桶加局部精修，但截图降采样会抹掉小控件细节，高分辨率下固定分桶又覆盖过大像素范围。作者提出 PixelOne，将逐步缩放搜索教师的空间知识迁移至在原生分辨率下直接预测点击点的单次前向学生。教师借助 VideoJEV 的文本选项打分器按行列逐步放大候选区域；学生继承教师参数，通过空间蒸馏匹配教师在探索区域上的分布，并配合目标框监督；推理时由共享决策头选出视觉 token，再由轻量级像素头在单次前向内直接给出该 token 内的点击坐标，同时引入点击对齐损失使框内像素得分高于框外。在四个基准上，PixelOne-Pro-35B-A3B 达到 83.8% 平均准确率，位居被测单前向定位模型之首，单目标平均延迟仅 0.43 秒。",
+          "method": "先训练多步行列缩放搜索教师，再将教师的权重与探索区域空间分布蒸馏到无搜索学生中；学生保留原生分辨率输入，经共享决策头选定视觉 token 后由轻量像素头一次性预测点击点，并用 click-aligned loss 直接优化框内外像素排序。",
+          "results": "离线 GUI Grounding 评测（四个全量基准等权平均，作者自报）：PixelOne-Pro-35B-A3B 达到 83.8% 平均准确率与 0.43 秒/目标延迟，4B 与 35B-A3B 均处于精度-延迟前沿（见原文 Table 1）。",
+          "limitation": "属于单步离线 GUI 定位器（offline grounding），尚未直接报告接入多步真实在线环境（如 OSWorld/AndroidWorld）后的端到端任务成功率增益。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 4,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.30235",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239402974",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 14,
+                "source": "GitHub",
+                "url": "https://github.com/tiankanghui/PixelOne",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.22591",
+          "title": "PACT: Plan-Action Consistency Training by Preserving Correct Plans and Repairing Actions in GUI Agents",
+          "authors_or_org": "Zhuohan Cai, Zhangxuan Gu, Runze Li, Beitong Zhou, Ming Wen",
+          "published_on": "2026-11-17",
+          "url": "https://arxiv.org/abs/2611.22591",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use"
+          ],
+          "tags": [
+            "online-rl",
+            "real-eval",
+            "no-code-yet"
+          ],
+          "intro": "解决 GUI Agent RL 里“想对了但点错了、结果连正确思考一起被负奖励惩罚”的信用分配冲突：用 PACT 屏蔽正确计划段的负梯度并定向修复动作，AndroidWorld 直涨 8.63 个百分点到 68.97%。",
+          "abstract_zh": "GUI 智能体常在推理中制定出正确的即时计划，却输出了未能执行该计划的错误动作，形成“执行鸿沟”。在结果监督强化学习中，将响应级负优势广播到全部生成 token 上，会把正确的规划推理连同错误执行一起惩罚。为解决这一信用分配冲突，作者提出计划-动作一致性训练框架 PACT，在不改变原始标量动作奖励的前提下结合“参考对齐的计划保护”与“计划对齐的动作修复”。借助标注参考动作识别执行鸿沟后，PACT 在已验证正确的计划 token 区间屏蔽负策略梯度；保持生成的推理上下文不变，再通过带 stop-gradient 配对权重的偏好替代损失促使模型偏好参考动作而非错误动作。相比纯结果监督基线，PACT 将 AndroidWorld 任务成功率从 60.34% 提升至 68.97%（+8.63 个百分点），AndroidControl High 上的规则计划-动作一致性从 83.71% 提至 89.74%（+6.03 个百分点）；迁移至桌面端也在完整 369 题 OSWorld 上将成功率从 40.92% 提升至 44.17%（+3.25 个百分点）。",
+          "method": "利用参考动作检测“计划正确但动作错配”样本，一方面对正确计划 token span 做负优势掩码（plan protection），另一方面固定该推理文本作上下文，用带 stop-gradient 权重的偏好损失定向把错误动作拉向参考动作（plan-aligned action repair）。",
+          "results": "真实在线与离线综合评测（作者自报，见原文 Table 3）：相比纯结果 RL 基线，AndroidWorld 在线成功率 60.34%→68.97%（+8.63 pp），全量 369 题 OSWorld 在线成功率 40.92%→44.17%（+3.25 pp），AndroidControl High 计划-动作一致性 83.71%→89.74%（+6.03 pp）。",
+          "limitation": "训练阶段识别执行鸿沟依赖带标注的参考动作（reference actions），在完全无示范轨迹的纯探索在线 RL 环境下如何替代参考动作仍需进一步研究；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7236079827",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.32102",
+          "title": "RISE: Reasoning with Implicit State Embeddings for GUI Agents",
+          "authors_or_org": "Enqi Liu, Zhi Gao, Liu Liu, Lifeng Fan, Liyuan Pan",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.32102",
+          "repo_url": "https://github.com/Liu-arch/RISE",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use"
+          ],
+          "tags": [
+            "open-code",
+            "offline-only"
+          ],
+          "intro": "把冗长的显式文字思考压缩进可学习的隐状态向量中，通过全 CoT 对齐、动作分布对齐与推理-动作边界对齐三重监督，在 OSWorld-G 上用 8B 模型拿到 70.6%（比基座高 4.3 个百分点）且省去推理文本延迟。",
+          "abstract_zh": "GUI 智能体将用户指令与截图转化为可执行动作。现有方法常在训练中依赖显式文本推理，容易导致对特定推理模板的过度依赖，而非提炼可泛化的动作相关信息。作者提出隐式推理框架 RISE，把与动作相关的推理信息整合进可学习的隐状态表征中以指导动作预测。通过三项互补监督目标捕获推理信息：全 CoT 状态对齐保留推理全过程信息，动作分布对齐编码动作偏好，推理-动作边界对齐捕捉生成动作前一刻的表征。RISE 在不生成中间推理文本的情况下提升了下一动作 token 预测精度，在 OSWorld-G 上配合 GUI-Owl 达到 70.6% 准确率，较其基座提高 4.3 个百分点，在对比的 8B 模型中取得 SOTA；跨两个骨干模型与六个多样基准的实验验证了其在 GUI 定位与离线动作预测上的有效性。",
+          "method": "引入上下文化的可学习隐状态嵌入替代推理时的显式 CoT 生成，训练期同时用全 CoT 表征对齐、动作分布对齐和 reasoning-to-action 边界对齐三路损失蒸馏教师 CoT 中的决策信息。",
+          "results": "离线 GUI 定位与动作预测评测（跨 2 个骨干与 6 个基准，作者自报）：在 OSWorld-G 上配合 GUI-Owl 达到 70.6% 准确率（相比基座 +4.3 个百分点），位居被测 8B 模型第一，且推理期无需生成冗长 CoT 文本。",
+          "limitation": "正文明确说明实验评测集中在 GUI grounding 与离线动作预测，尚缺真实多步在线环境（如完整 OSWorld）中的长程错误恢复与闭环成功率验证。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239766762",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 1,
+                "source": "GitHub",
+                "url": "https://github.com/Liu-arch/RISE",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.32332",
+          "title": "GUI-WEdit and GUI-SkillEvo: Gradient-Free Adaptation of Small GUI Agents",
+          "authors_or_org": "Haixia Bi, Yingtian Chen, Sihan Yang, Zuzheng Kuang, Yuzhen Tong",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.32332",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use",
+            "递归自我改进"
+          ],
+          "tags": [
+            "real-eval",
+            "skill-update",
+            "weight-update",
+            "no-code-yet"
+          ],
+          "intro": "不跑反向传播也能让 2B/4B 小模型 GUI Agent 适应桌面任务：4B 版只用闭式方程微调 0.535% 单层 MLP 权重（带成功状态保护），2B 版迭代演化过程技能，OSWorld 361 题分别达到 48.02% 与 45.47%。",
+          "abstract_zh": "小型图形用户界面（GUI）智能体可以执行桌面工作流，但反复出现的局部错误和脆弱的过程决策限制了其可靠性。作者基于 GUI-Owl-1.5 骨干提出两种无梯度自适应方法：GUI-WEdit-4B 和 GUI-SkillEvo-2B。针对 4B 模型，利用轨迹反馈构造带保护约束的闭式权重更新，仅修改靠后某一多层感知机（MLP）层的单个权重张量，并保留成功状态作为保护约束，最终检查点仅改动了 44.38 亿参数中的 23,739,095 个（占 0.535%）。针对 2B 模型，保持模型权重完全冻结，由辅助模型迭代提出并精炼过程性技能。在剔除 Google Drive 任务的 361 题 OSWorld 子集上，冻结后的两套系统分别取得 48.02% 与 45.47% 的最终综合得分。",
+          "method": "对比两条无梯度适应路径：（1）GUI-WEdit-4B 用轨迹反馈对后层单个 MLP 权重做带成功状态零退化保护的闭式编辑；（2）GUI-SkillEvo-2B 完全冻结参数，通过助手迭代提炼与修正外部过程技能库。",
+          "results": "真实在线桌面评测（OSWorld 361 题子集，不含 Google Drive 任务，作者自报）：GUI-WEdit-4B 达 48.02%，GUI-SkillEvo-2B 达 45.47%（注：arXiv HTML 全文暂未渲染，细节数字以摘要为准，基座原始对照分需查 PDF 正文核实）。",
+          "limitation": "评测使用剔除 Google Drive 的 361 题子集而非全量 369 题，且需要额外核实适应数据与测试任务之间是否存在同分布泄露风险；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239862107",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.33760",
+          "title": "GlassGround: GUI Grounding Beyond Native Screenshots with Egocentric Wearable Vision",
+          "authors_or_org": "Yun Wang, Siyue Sun, Jiaying Du, Xinyi Wei, Xiaoming Zhai",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.33760",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "benchmark",
+            "offline-only",
+            "no-code-yet"
+          ],
+          "intro": "把原生截图换成智能眼镜拍到的物理屏幕画面，10 个主流 GUI 模型定位精度直接从 94.8% 暴跌到 48.5%；提出成对视角表征蒸馏 PairDistill，推理无需截图可回升 9.4–12.2 个百分点。",
+          "abstract_zh": "当穿戴式助手无法直接获取系统截图时，必须从摄像头画面定位界面元素，但现有 GUI 定位基准大多只评测原生截图。作者提出 GlassGround，在固定 GUI 状态、指令和目标的前提下将原生截图与穿戴摄像头观测严格配对，涵盖 Android 与 iOS 共 3,250 个任务，由四款穿戴设备在四种观看条件下采集。测试十款开源模型发现，平均定位准确率从原生截图的 94.8% 骤降至摄像头画面的 48.5%，且目标尺度、屏幕透视几何和背景变化并不能完全解释这一退化。作者进一步探索了两类缓解方案：推理期局部缩放与屏幕校正有一定帮助但仍留有很大差距；训练期利用配对视角提出 PairDistill，在坐标监督外对齐跨视角目标表征，推理时无需截图即可在两个骨干上分别提升 9.4 和 12.2 个百分点并迁移至未见设备与系统，结合局部缩放可达 69.6% 和 64.4%，但仍未彻底弥合差距。",
+          "method": "构建截图-穿戴相机严格配对的 3,250 题基准，并设计训练期跨视角表征对齐基线 PairDistill，让模型仅凭物理拍摄画面也能逼近原生截图的特征定位能力。",
+          "results": "离线配对 GUI Grounding 评测（3,250 题，10 个开源模型含 MAI-UI-8B、GUI-Owl-1.5-8B/32B、Qwen3.8-27B 等，作者自报）：原生截图均值 94.8% vs 穿戴相机均值 48.5%；PairDistill 分别提升 +9.4 与 +12.2 个百分点，叠加局部缩放达 69.6% 与 64.4%。",
+          "limitation": "属于单步静态定位基准；论文摘要给出的 GitHub 地址（github.com/yunnw/GlassGround）在 2026-11-26 核验返回 404，数据与代码尚未实际公开可见。",
+          "heat": {
+            "unavailable": "近期新作（2026-11-25 发布），截至 2026-11-26 在 OpenAlex 与 HF Papers 无记录，论文所列 GitHub 地址暂返回 404。"
+          }
+        }
+      ]
+    },
+    {
+      "topic": "环境规模化",
+      "priority": "tier1",
+      "papers": [
+        {
+          "id": "arxiv:2611.32255",
+          "title": "TimeTravelContainer: A Live Forking Sandbox for Stateful Agent Exploration",
+          "authors_or_org": "Zizheng Guo, Yanqing Zhang, Nathaniel Pinckney, Cunxi Yu, Brucek Khailany (NVIDIA Research)",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.32255",
+          "repo_url": "https://github.com/NVlabs/TimeTravelContainer",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "open-env",
+            "open-code",
+            "infra",
+            "real-eval"
+          ],
+          "intro": "NVIDIA 开源无 root 权限、跨 Linux/macOS/WSL2 的写时复制（CoW）热分叉容器运行时：把运行中的重状态沙盒（进程+内存+文件+网络）直接克隆，环境分叉提速 84.1 倍、省 31–72% 内存。",
+          "abstract_zh": "驱动有状态工具（如交互式 Shell、设计软件、仿真引擎）的 LLM 智能体在树搜索、回溯和并行探索时经常需要克隆运行中的实时会话。然而现有做法要么把内存状态序列化到磁盘，要么从头重启，速度过慢；基于微虚拟机或内核补丁的沙盒又往往需要落盘全量客户机内存或特权部署，难以在共享算力集群或个人电脑上使用。作者提出 TimeTravelContainer（TTC），一种无须 root 权限的容器运行时，通过写时复制（CoW）语义实时分叉整个运行中容器——包含进程、内存、文件系统和网络。由于分叉后工具会话的大部分内存是只读的，子分支自动共享内存，仅分歧页面占用额外内存。TTC 无需内核修改、硬件虚拟化或 root 权限，支持 Linux、macOS（Apple Silicon）和 Windows（WSL 2）。在两个重状态 EDA 智能体工作流（MAGE/Innovus 与 EvoDRC/KLayout）上的评测显示，TTC 实现 84.1 倍环境克隆加速、31–72% 内存节省和 1.7–9.4 倍端到端加速，扫清了有状态工具并行探索的规模化瓶颈。",
+          "method": "在用户态无特权容器中实现进程、内存页、文件系统与网络的联合写时复制（CoW）实时分叉，替代全量磁盘序列化或 git worktree 全目录拷贝，支持任意不可插桩闭源二进制工具的毫秒级树状分支探索与回溯。",
+          "results": "重状态 EDA 真实系统评测（MAGE/Innovus 与 EvoDRC/KLayout，常驻数十至上百 GB 内存，作者自报）：单次环境克隆提速 84.1×，常驻内存占用减少 31–72%，端到端探索加速 1.7–9.4×。",
+          "limitation": "目前主要在重内存闭源 EDA 工作流中验证，面向带完整图形界面（X11/Wayland/Android 模拟器）或 GPU 上下文状态的 GUI/OS 沙盒热分叉兼容性仍需额外实测。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "stars",
+                "count": 7,
+                "source": "GitHub",
+                "url": "https://github.com/NVlabs/TimeTravelContainer",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.30962",
+          "title": "Self-Evolving Evaluation Environments for Computer-Use Agents",
+          "authors_or_org": "Wenhao Wang, Panrong Tong, Quyu Kong, Pengxiang Li, Haowen Yang",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30962",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use",
+            "递归自我改进"
+          ],
+          "tags": [
+            "scalable-synthesis",
+            "verifiable-reward",
+            "real-eval",
+            "no-code-yet"
+          ],
+          "intro": "针对静态 OSWorld 基准快速饱和的问题，提出闭环自演化评测环境 CUA-SEE：根据多 Agent 的 rollout 证据协同演化更难的任务和经对抗审计的可执行验证器。",
+          "abstract_zh": "计算机使用智能体进步神速，但评测手段仍高度静态。既有基准虽然奠定了基础，但固定的难度天花板、有限的功能覆盖和粗糙的汇总分数使其区分度与诊断价值不断削弱。作者提出 CUA-SEE，一个基于 rollout 证据协同演化任务与可执行验证器的闭环评测环境。它将三个目标解耦：基准演化通过群体校准的难度与覆盖度增长扩展评测边界；诊断演化生成面向特定智能体的能力边界探针以提高分辨力；验证器演化则把变动需求翻译为基于状态的可执行检查点并辅以对抗验证来保障精度。跨多智能体、多应用与多轮次的实验表明，CUA-SEE 能持续生成有挑战性且可度量的任务并保留过程级证据，使自适应评测成为自演化智能体的可扩展对偶。",
+          "method": "构建跨 20 款应用（对齐 8 款 OSWorld 核心应用、50 步预算）的闭环演化系统，拆分为基准演化、智能体条件化诊断探针演化与带对抗审计的状态检查点验证器演化三个模块；实验中用三款模型驱动演化，另两款模型严格留作持出评测以防过拟合。",
+          "results": "真实桌面多轮闭环评测（8 款 OSWorld 核心应用、100 组谱系对齐任务、5 款 SOTA Agent 共 2,500 组配对观测，作者自报）：在 Kimi-K2.6、Seed-2.1-Pro、Gemini-3.5-Flash 驱动演化下，演化出的任务与验证器对严格持出的 Qwen-3.7-Plus 和 GPT-5.5 仍保持高区分度与可归因诊断能力（具体各轮分数曲线见正文 Section 4 与附录）。",
+          "limitation": "演化管线高度依赖多款强前沿模型的持续 rollout 与对抗验证成本，且截至观察日尚未开源环境脚本与验证器审计代码。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 50,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.30962",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239411942",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.30207",
+          "title": "What Makes Good Data for Training Coding Agents? A Systematic Study on SWE-Gym",
+          "authors_or_org": "Yikai Zhang, Mai Xu, Yunbei Zhang, Qirui Jin, Kenan Li",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30207",
+          "repo_url": "https://github.com/Arist12/SWE-Gym-Verified",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "open-data",
+            "open-code",
+            "verifiable-reward",
+            "online-rl"
+          ],
+          "intro": "对 SWE-Gym 训练环境做执行级审计的硬核发现：9B 基座始终解不出的任务里竟有 74% 是隐藏测试把正确补丁错判为失败（假阴性）！修复后等规模同难度 RL 训练在 SWE-bench Verified/Pro 上稳涨 2.4 和 2.7 分。",
+          "abstract_zh": "强化学习利用隐藏测试决定奖励来训练编码智能体，但现有任务集往往只用参考补丁检查过测试是否通过。作者系统追问“什么样的任务才是好的 RL 训练数据”，重点审计奖励标签的正确性：用两类 LLM 审计 SWE-Gym 且仅计入可被真实执行复现的错误。结果发现“解不出”往往意味着“标错了”：9B 基础模型从未解出的任务中高达 74% 存在拒绝正确修复的假阴性测试（而在偶尔解出的任务中仅占 20%）。修复或移除这些坏题后，在同等数据量与匹配难度下，用审计后任务训练的策略在持出集 SWE-bench Verified 和 SWE-bench Pro 上分别高出原数据集 2.4 和 2.7 个百分点，而简单丢弃零通过率难题则无此收益。作者还发现错误补丁通过测试（假阳性）约占全部通过补丁的四分之一，但补测拦掉四分之一假阳性并未带来可检测的持出集提升。最终开源含 1,087 道带执行证据审计任务的 SWE-Gym-Verified、训练集与完整审计管线。",
+          "method": "用两套异构 LLM 对 SWE-Gym 隐藏测试用例进行系统审查，并要求每条假阴性/假阳性判定都必须由沙盒实际执行复现；再在等样本量、等难度控制下对比清洗前后的 RL 策略在持出基准上的表现。",
+          "results": "真实代码沙盒 RL 评测（作者自报）：9B 零通过任务中 74% 含假阴性测试（偶尔通过任务为 20%）；基于审计清洗后的 1,087 题训练，同等规模与难度下在 SWE-bench Verified 提升 +2.4 点、SWE-bench Pro 提升 +2.7 点，而直接按 pass rate 过滤零分题无显著收益。",
+          "limitation": "审计结论主要基于软件工程单元测试奖励场景，对 GUI/桌面状态验证器的假阴性比例与修复收益虽有强启发意义，但仍需在 GUI Gym 中单独量化验证。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 19,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.30207",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239430453",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 4,
+                "source": "GitHub",
+                "url": "https://github.com/Arist12/SWE-Gym-Verified",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.34777",
+          "title": "When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL",
+          "authors_or_org": "Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34777",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "online-rl",
+            "verifiable-reward",
+            "real-eval",
+            "no-code-yet"
+          ],
+          "intro": "解决长程 Agent GRPO 训练中“整组 rollout 全挂导致零梯度”的老大难：SPLICE 不喂昂贵的完整教师轨迹，而是在失败轨迹中途选断点拼接短选项并用当前策略续跑估值，四项设置全面超越 GRPO 2.8–9.8 个百分点。",
+          "abstract_zh": "带可验证奖励的组内相对强化学习（如 GRPO）在长程智能体任务上经常出现全失败组：整组采样轨迹奖励全为 0，导致组相对方法失去策略梯度。常见补救是让更强模型提供完整解法，但整条轨迹昂贵且会让学习者暴露于漫长的离策略历史中。作者提出 SPLICE，在线从当前策略的失败轨迹中构造局部训练目标：对每个全失败组，提议模型在失败轨迹中选定一个可分支断点并生成若干有界短选项；随后通过当前策略多次续跑估计各选项价值，将正估值选项转为回报加权的局部训练目标拟合当前策略。在软件工程（SWE-bench Verified）与深度研究（BrowseComp-Plus）两类长程任务及两个策略家族上，SPLICE 在全部四个设置中均优于 GRPO 和完整轨迹引导基线，较 GRPO 提升 2.8–9.8 个百分点；在初始全败 SWE 任务上将 GRPO 的“毕业率”提高 10.8 个百分点，同时降低了昂贵提议模型的计算开销。",
+          "method": "对 GRPO 中奖励全为 0 的分组触发 Splice 分支：提议模型结合终态验证器反馈在可恢复/可重放的轮次边界选断点并提出短步骤 option，再用当前策略从该断点续跑多次（如 3 次）估计其 learner-conditioned 价值，仅对正价值选项构造局部更新目标。",
+          "results": "长程在线 RL 评测（SWE-bench Verified 与 BrowseComp-Plus，两个模型家族共 4 组设定，作者自报）：全面超越 GRPO 与完整教师轨迹引导，相比 GRPO 提高 +2.8 至 +9.8 个百分点；在初始全失败 SWE 任务上将毕业率提升 +10.8 个百分点。",
+          "limitation": "作者明确指出，每个候选选项都需要多次当前策略续跑来估值（3 次续跑仍有采样方差），若环境执行与重置开销极高，异步续跑的墙钟与算力开销会显著放大；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 1,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.34777",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.30983",
+          "title": "MedUIGym: Evaluating and Training GUI Agents for Clinical Workflows",
+          "authors_or_org": "Yitong Qiao, Lei Liu, Yue Shen, Jian Wang, Jinjie Gu",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30983",
+          "repo_url": "https://github.com/yitong-qiao/MedUIGym",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "GUI Agent"
+          ],
+          "tags": [
+            "open-env",
+            "open-code",
+            "online-rl",
+            "verifiable-reward",
+            "benchmark"
+          ],
+          "intro": "把 17 个医疗电子病历（EHR）数据源整合为 15,739 道可验证任务的垂直 GUI Gym，同时提供纯截图键鼠和等价原生工具双接口，并支持并行轨迹采集与在线 RL 训练。",
+          "abstract_zh": "自动化临床工作流需要视觉语言智能体在密集的电子病历（EHR）图形界面中精准导航与操作，而现有医疗智能体大多仍停留在文本或结构化工具调用。作者推出可扩展交互环境 MedUIGym，汇集 17 个基准来源、覆盖六大临床任务家族共 15,739 个任务用于训练和评测临床 GUI 智能体。智能体既可通过截图与键鼠交互，也可在同一套临床数据上使用配对的原生工具接口；环境同时验证最终答案与必需的临床操作，并支持并行轨迹采集。评测十二款视觉语言模型发现，现有智能体在多样临床流程上仍举步维艰，单纯增加推理力度并不能稳定带来提升。进一步地，MedUIGym 支持离线 GUI 轨迹学习与基于任务奖励的在线强化学习，训练后的 Qwen3.5 系列模型在域内临床任务和外部来源任务上均取得泛化提升。",
+          "method": "构建模拟医院 EHR 界面与统一任务库（覆盖信息检索、临床决策、队列查询、临床操作、病历书写与预后预测六类），支持 GUI 与原生 API 双接口对照评分及并行 rollout 采集以做 SFT 与在线 RL。",
+          "results": "模拟 EHR 在线评测（15,739 任务，12 款 VLM 基线，作者自报）：单纯加大 reasoning effort 收益不稳定；在 MedUIGym 上做轨迹学习与在线 RL 后，两款 Qwen3.5 模型在域内与外部来源任务均获得提升（具体各模型得分见正文 Section 4 表格）。",
+          "limitation": "基于模拟医院 EHR 系统且聚焦单一垂直专业领域，其高密度表单交互模式向通用消费级桌面/移动应用的迁移性尚待检验。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239372638",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 0,
+                "source": "GitHub",
+                "url": "https://github.com/yitong-qiao/MedUIGym",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "递归自我改进",
+      "priority": "tier2",
+      "papers": [
+        {
+          "id": "arxiv:2611.30965",
+          "title": "Beyond Self-Consistency: Recursive Self-Improvement at Test Time",
+          "authors_or_org": "Jianyu Wu, Yizhou Wang, Encheng Su, Jinouwen Zhang, Pengze Li",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30965",
+          "repo_url": "https://github.com/uanu2002/TT-RSI",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "open-code",
+            "weight-update",
+            "context-update"
+          ],
+          "intro": "打破无标签测试时训练（TTRL）依赖多数投票容易“把错的越投越错”的瓶颈：把上下文内多轮精修（In-Context RSI）与权重点对点蒸馏（In-Weight RSI）耦合，同等算力下比最强自一致性方法再高 4.79 个百分点。",
+          "abstract_zh": "部署后仍能持续自我提升的递归自我改进（RSI）是通往通用智能的重要路径。现有面向无标签问题的测试时方法主要依赖自一致性（self-consistency）：独立采样多条解答并以多数投票选答案或构造训练目标，这既浪费了先前推理，又会在训练中强化错误的多数派。作者提出无标签测试时递归自我改进框架 TT-RSI，包含两个相互强化的组件：（1）上下文内 RSI（In-Context RSI）以前一轮完整解答为参考反复重解，让模型自主决定是否及如何复用纠错；（2）权重内 RSI（In-Weight RSI）将连续精修的结果蒸馏进模型权重，突破初始错误多数的限制，理论上将首次作答推向模型的无限步精修极限。更新后的模型作答与精修都更强，进而为下一轮提供更优参考。大量实验表明，在相同测试时扩展预算下，TT-RSI 平均准确率较基础模型提升 +13.89%，较最强自一致性方法提升 +4.79%。",
+          "method": "同时区分并耦合两层更新：先通过 In-Context RSI 串行利用历史完整解做多步自我纠错，再通过 In-Weight RSI 把精修后的解作为教师目标蒸馏进权重，避免多数投票在低基线题上锁死错误答案。",
+          "results": "竞赛数学五基准（AIME25、HMMT25、AIME26、HMMT26、BRUMO25，跨三个模型规模，作者自报）：在同等测试时扩展预算下，TT-RSI 较 Base 平均提升 +13.89%，较最强自一致性基线 TTPO+SC 提升 +4.79%。",
+          "limitation": "评测集中在封闭式竞赛数学推理任务，尚未验证在开放式多步工具调用或真实软件/GUI 交互环境中的无标签多轮退化与坍缩边界。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 11,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.30965",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239382933",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 1,
+                "source": "GitHub",
+                "url": "https://github.com/uanu2002/TT-RSI",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.34398",
+          "title": "When Skills Fail to Compose: Compatibility and Retention in Language Models",
+          "authors_or_org": "Yan Lin, Zhongliang Guo, Jingyu Sun, Qiyan Zhao, Ruihong Zeng",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34398",
+          "repo_url": "https://github.com/YanLin-Quinne/SkillCompatibility",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "open-code",
+            "skill-update",
+            "held-out-eval"
+          ],
+          "intro": "给“技能库式自演化 Agent”泼一盆精准冷水：单个学得极好（≥90%）的软提示技能，放进单次调用组合时准确率竟暴跌至 ≤7.6%，甚至换一个同功能的独立技能块也会让组合率从 98% 塌到 12.7%。",
+          "abstract_zh": "单靠习得单个技能并不能构成可复用的技能库：单任务熟练度并不等同于可组合接口。受自演化智能体获取和精炼技能的启发，作者在冻结语言模型上研究了独立学习的软提示（soft-prompt）技能，在明确给定技能标识与执行顺序的条件下评测组合性。在四个数字任务基座与三个记录编辑模型上，单次前向调用的平均组合准确率最高仅 7.6%，而拆成带显式中间输出的两步调用可达 88.2%–100%。中性插入训练虽提升鲁棒性但仍存显著干扰；且同操作技能块并不具备可互换性——在两个 Qwen 基座上把协同训练过的冻结搭档换成另一个单测 ≥90% 的同功能独立技能块，中位组合准确率从 98.0% 和 95.3% 骤降至 12.7% 和 0.5%。针对组合的修复还可能损害原技能，重放虽助保持但持出组合迁移依然有限。文章呼吁在评估自演化技能库时将兼容性、保持度与组合迁移纳入核心指标。",
+          "method": "在冻结 LLM 上用 20 token 软提示嵌入块作为可控技能单元，构造有序组合、搭档替换、局部修复与重放等受控实验，拆解技能获取、组合兼容、旧技能保持与未见组合迁移四个维度。",
+          "results": "受控合成任务评测（4 个数字任务基座 + 3 个记录编辑模型，作者自报）：单次调用直接拼接组合均值 ≤7.6%（显式两步调用 88.2%–100%）；替换等价搭档后两款 Qwen 基座中位组合率分别从 98.0%→12.7%、95.3%→0.5%。",
+          "limitation": "研究对象为受控合成任务上的连续 soft-prompt 技能，与自然语言/可执行代码形式的 Agent Skill 在组合干扰机理上存在差异，结论外推需谨慎。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "stars",
+                "count": 0,
+                "source": "GitHub",
+                "url": "https://github.com/YanLin-Quinne/SkillCompatibility",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.28833",
+          "title": "Self-WSP: Can Language Models Improve Themselves Through Weight-Space Programming?",
+          "authors_or_org": "Guoming Ling, Shanshan Zhong, Kaixuan Zhang, Zhongzhan Huang",
+          "published_on": "2026-11-21",
+          "url": "https://arxiv.org/abs/2611.28833",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "weight-update",
+            "held-out-eval",
+            "no-code-yet"
+          ],
+          "intro": "非常反直觉的实证探针：让 0.8B 小模型直接读写编辑自己的权重（Self-WSP），有时只改 16 个参数就能把 GSM8K 从 11.8% 拉到 62.2%，但深入分析发现模型其实并不懂自己在改啥，随机搜索有时也能打出近似效果。",
+          "abstract_zh": "前沿语言模型已能像读写代码一样编辑神经网络权重来改进小模型，这一方法称为权重空间编程（Weight-Space Programming, WSP）。作者进一步探索把 WSP 应用于语言模型自身（Self-WSP）：让 Qwen3.5-0.8B 读取自身权重、提出修改方案，再以修改后的权重同时充当解题者与编辑器。实验发现了诸多真实的自我改进案例：自编辑可将 GSM8K 准确率从 11.8% 提升至 62.2%，将 MATH500 从 7.0% 提升至 32.2%，有时甚至只改动 16 个参数，且在部分情况下多轮自编辑还能持续提升。但更深入的剖析揭示这些收益缺乏可解释性：模型对所做的参数修改几乎没有理解，而由随机搜索驱动的 WSP 有时也能取得相近表现。Self-WSP 展示了通往递归自我改进的潜力，但距离真正受控的自我理解式改进仍需深入探索。",
+          "method": "构建“求解器+权重编辑器合一”的 Self-WSP 循环，让 Qwen3.5-0.8B 直接检视并编辑自身参数后在验证/测试集上迭代评测，并与随机搜索权重编辑做严格对照。",
+          "results": "数学推理测试集（GSM8K 1,319 题、MATH500 500 题，作者自报）：Qwen3.5-0.8B 通过自我权重编辑可将 GSM8K 从 11.8% 提至 62.2%、MATH500 从 7.0% 提至 32.2%（最低仅改 16 个参数），但随机搜索对照在某些情形下可获可比收益，证明当前机制并非真正语义级自我理解。",
+          "limitation": "实验仅在 0.8B 小模型与数学题上开展，且随机搜索可匹敌说明当前增益高度依赖黑盒试错与验证筛选，尚无可靠的可解释权重级推理能力；截至观察日未查到公开仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 13,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.28833",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239369852",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "游戏智能体",
+      "priority": "tier2",
+      "papers": [
+        {
+          "id": "arxiv:2611.31974",
+          "title": "Coding4Games: Can Modern Coding Agents Play Modern Video Games?",
+          "authors_or_org": "Shifang Zhao, Haoyu Wang, Yuyang Yin, Dong Chen, Xingyilang Yin",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.31974",
+          "repo_url": "https://github.com/GVCLab/Coding4Games",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use",
+            "环境规模化"
+          ],
+          "tags": [
+            "benchmark",
+            "open-env",
+            "open-code",
+            "real-eval"
+          ],
+          "intro": "换个思路玩现代电子游戏：不让大模型边玩边慢吞吞推理，而是让 Coding Agent 在沙盒里试玩并写出脱离 LLM 推理独立运行的玩游戏程序；15 款现代游戏里在 13 款击败最强 GUI 基线。",
+          "abstract_zh": "电子游戏尤其是现代 AAA 游戏在复杂视觉感知、动作控制和长程决策上极具挑战。现有游戏基准大多把语言模型当成计算机使用智能体在游玩全程不断调用模型，既产生高昂推理成本，又在实时游戏里因延迟而滞后。作者追问：编码智能体能否从游戏交互中学习，开发出无需语言模型推理即可独立运行的玩游戏程序？为此提出 Coding4Games 基准，具备三大特征：（1）覆盖 15 款视觉、策略与操控各异的现代游戏；（2）开发与测试分离——编码智能体先在沙盒中通过标准玩家接口迭代写程序，随后冻结所选程序在零 LLM 推理下独立评测；（3）结果与过程并重，除游戏得分与稳定性外还评估智能体如何利用反馈修改代码与排障。在 15 款游戏、12 个编码智能体评测中，每款游戏的最佳生成程序在 13 款上击败最强 GUI 基线、1 款打平，但人类玩家仍在 10 款上胜过全部智能体。",
+          "method": "搭建沙盒化开发环境连接类 Gym 游戏服务端，强制把“交互式程序开发阶段”与“冻结程序无模型独立测试阶段”隔离，同时度量最终游戏得分、开发成本及自测-排障闭环效率。",
+          "results": "真实游戏环境独立评测（15 款现代游戏、12 个 Coding Agent，作者自报）：最佳生成程序在 13/15 款上超越最强 GUI Agent 基线、1/15 打平；人类玩家在 10/15 款上依然领先所有智能体，且过程指标暴露出 Agent 发现的问题远多于实际修复的问题。",
+          "limitation": "生成的独立视觉控制脚本依赖特定游戏画面规则与开发期试玩预算，面对高度随机或未见关卡时的零样本泛化能力弱于通用多模态策略。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 13,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.31974",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239748233",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 19,
+                "source": "GitHub",
+                "url": "https://github.com/GVCLab/Coding4Games",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.30771",
+          "title": "GameDojo: Benchmarking Real-Time Interactive Agents in Video Games",
+          "authors_or_org": "Kuan Zhang, Zhihao Yang, Yukun Chen, Xingyilang Yin, Mingyu Ouyang",
+          "published_on": "2026-11-23",
+          "url": "https://arxiv.org/abs/2611.30771",
+          "repo_url": "https://github.com/THUSI-Lab/GameDojo",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "benchmark",
+            "open-env",
+            "open-code",
+            "open-data",
+            "real-eval"
+          ],
+          "intro": "用 Coding Agent 重构 20 款游戏的 120 场 Boss 战并自动写行为树采集 600 小时轨迹（GameDojo-Data），支持暂停与实时双模式评测，据此微调出的 4B 模型在实时交互上反超前沿大模型。",
+          "abstract_zh": "交互智能要求智能体基于实时观测行动并适应动作后果，需要可控且多样的高难度环境。作者推出可控交互游戏基准 GameDojo，包含跨越 20 款游戏的 120 场 Boss 战，用于评测模型能力、学习算法与智能体 Harness。团队利用编码智能体重构这些环境并编写游戏脚本，自动产出了含 600 小时游玩轨迹的 GameDojo-Data。实验显示前沿模型在实时交互条件下仍面临严峻挑战；而在 GameDojo-Data 上训练得到的 GameDojo-4B 达到前沿水平并取得最强实时表现，同时验证了多 Boss 联合训练既能提升单任务成绩，学到的策略也能跨 Boss 迁移。",
+          "method": "由 Coding Agent 根据机制资料重构可控 Boss 战环境，并用行为树脚本（附加人类反应延迟校准 Easy/Medium/Hard 三档难度）自动采集 600 小时轨迹，分别在“暂停时钟（300 步）”与“实时 3 分钟”双模式下评测。",
+          "results": "实时与暂停双模式评测（120 场 Boss 战、每模型 3 轮，作者自报）：前沿模型在实时模式下性能显著下滑，基于 600 小时轨迹微调的 GameDojo-4B 拿到最强实时成绩并展现跨 Boss 迁移能力（具体 WR/PG 百分比见原文 Table 4）。",
+          "limitation": "作者在局限部分明确指出，由视频、Wiki 和机制描述重构出的 Boss 战可能遗漏原版游戏的隐性规则与视觉细节，因此成绩主要衡量重构任务内表现，向原版商业游戏的迁移未直接验证。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 9,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.30771",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239444119",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 19,
+                "source": "GitHub",
+                "url": "https://github.com/THUSI-Lab/GameDojo",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.28202",
+          "title": "AutoPILOT: A Visual Agent Harness for Real-Time Gameplay",
+          "authors_or_org": "Mark Zhao, Pengcheng Wang, Rui Yang, Jiarui Yao, Xirui Jiang",
+          "published_on": "2026-11-20",
+          "url": "https://arxiv.org/abs/2611.28202",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "Computer Use"
+          ],
+          "tags": [
+            "benchmark",
+            "real-eval",
+            "no-code-yet"
+          ],
+          "intro": "免训练改 Harness 就能大幅救活实时游戏 Agent：允许大模型每次调用不限于单步点击，而是直接下发开环宏或运行时写一段看屏幕自运行的闭环控制器，在 120 款网页游戏 AFK-Bench 上实时成功率从 38.3% 翻到 68.6%、费用降为 1/5。",
+          "abstract_zh": "多模态基础模型在游戏等待它们思考时表现尚可，但一旦游戏持续实时运行就频繁失手。作者指出很大一部分差距源于 Harness：现有框架（如 VISTA）优化了观测与记忆，却仍把每次模型调用限制为至多一个动作，导致智能体行动频率受限于模型思考速度。作者提出免训练视觉 Harness——AutoPILOT，让模型每次调用可以发出原子动作、启动开环宏，或现场编写一段持续读屏运行的闭环控制器直到主动交回控制权。同时构建包含 120 款离线 Chromium 浏览器游戏的 AFK-Bench（支持实时与暂停双模式）。在同等预算与 GPT-6.1 Sol 下，AutoPILOT 实时成功率达 68.6%，大幅领先 VISTA 的 38.3%；在 GameWorld 上实时保持 80.0%，而 VISTA 从暂停时的 84.1% 跌至 42.9%。增益跨闭源与开源模型均成立，且仅用 VISTA 五分之一的 API 费用即可达到同等最终成功率。",
+          "method": "重构动作执行接口：在每次大模型调用时提供三层动作原语——单步原子动作、开环时序宏（macro）与运行时即时编写的闭环视觉控制器（closed-loop controller），把高频控制从 LLM 调用延迟中彻底解耦。",
+          "results": "实时游戏在线评测（AFK-Bench 120 款网页游戏 + GameWorld，作者自报）：同预算 GPT-6.1 Sol 下，AFK-Bench 实时成功率 68.6% vs VISTA 38.3%（+30.3 pp）；GameWorld 实时 80.0% vs VISTA 42.9%（+37.1 pp），达到 VISTA 最终成功率仅需 1/5 API 成本。",
+          "limitation": "依赖底层模型较强的实时代码编写与视觉规则抽象能力，对于难以用轻量脚本提取视觉状态的高拟真 3D 动作游戏适用性仍受限；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 34,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.28202",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239404100",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "World Model",
+      "priority": "tier1",
+      "papers": [
+        {
+          "id": "arxiv:2611.32811",
+          "title": "Interactive Neural Computers",
+          "authors_or_org": "Ross Murphy, Marcel Hedman, Gabriel Brostow",
+          "published_on": "2026-11-24",
+          "url": "https://arxiv.org/abs/2611.32811",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "Computer Use",
+            "GUI Agent"
+          ],
+          "tags": [
+            "state-modeling",
+            "pixel-wm",
+            "latent-wm",
+            "no-code-yet"
+          ],
+          "intro": "非常贴合 Digital/OS World Model 的前沿新作：不再让 Agent 操作固定操作系统，而是训练带惊奇门控槽位记忆（MEMORY-JEPA）和残差渲染器的神经网络直接“成为一台计算机”，长闭环遮挡文件召回率 64.2%、终端 OCR 准确率从 1.3% 飙升至 50.1%。",
+          "abstract_zh": "计算机与界面通常被视为固定的，人或 AI 智能体只能被动适应操作系统呈现的一切。作者探索了一条被忽视的替代路径：与其训练智能体操作现有电脑，不如训练生成模型直接成为计算机，根据历史屏幕与用户键鼠动作预测下一帧桌面画面。把桌面视作交互式世界模型会遇到自然视频世界模型大多规避的难题——没有相机位姿可索引记忆，却必须记住移出屏幕的文件与窗口内容；终端里的算术必须精确而非“看起来合理”；小字号界面文字需在交互帧率下保持清晰。作者提出类神经图灵机架构的 Interactive Neural Computer，端到端从像素与动作训练三大模块：由隐空间下帧预测（MEMORY-JEPA）监督的惊奇门控槽位记忆用于保存离屏状态；探索式查询桥接入预训练 VLM 的推理能力；残差渲染器仅预测帧间隐空间变化。在长闭环 rollout 中，该模型在 64.2% 的测试中准确召回被遮挡文件（随机 33.3%，循环与滑窗基线最高 56.0%），并将终端文字 OCR 准确率从 1.3% 提至 50.1%；由于记忆显式可拆卸，测试时还可移植记忆因果改变渲染结果。",
+          "method": "端到端像素-动作数字世界模型（类 NeuralOS 路线升级）：（1）MEMORY-JEPA 隐空间预测监督的 surprise-gated slot memory 解决无几何线索的离屏状态记忆；（2）查询桥接入预训练 VLM（Qwen2.5-VL-3B / Qwen3-VL-2B）补足符号与终端逻辑；（3）残差隐渲染器只预测帧间差异以保小字清晰与抗覆盖。",
+          "results": "闭环桌面像素模拟评测（Controlled Suite 对齐 NeuralOS 编码与分辨率，另设 High-Resolution Suite，作者自报）：长闭环遮挡文件召回率 64.2%（随机 33.3%，循环/滑窗基线 ≤56.0%）；终端文字 OCR 准确率由 1.3% 提至 50.1%，且支持测试期跨样本移植显式记忆因果改写屏幕内容。",
+          "limitation": "作者在结论中坦言受限于学术算力仅在完整数据混合的一小部分上训练、性能尚未饱和；同时 50.1% 的终端精确 OCR 离真实可替代操作系统执行（需近 100% 精确符号一致性）仍有明显距离，且截至观察日未查到公开仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239877042",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.34656",
+          "title": "Do We Still Need Reinforcement Learning When We Can Read the World Model?",
+          "authors_or_org": "Mingchao Zhang, Miduo Cui, Kangze He, Yuanjun Li, Dapeng Li",
+          "published_on": "2026-11-25",
+          "url": "https://arxiv.org/abs/2611.34656",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "executable-sim",
+            "no-code-yet"
+          ],
+          "intro": "挑战“必须跑大量 RL 试错”的前提：如果环境世界模型本身可读（如模拟器源码），让 Coding Agent 直接读源码综合出可执行决策策略并用少量反馈微调，就能以极少交互追平甚至超过常规 RL。",
+          "abstract_zh": "强化学习在序贯决策中成就斐然，但往往需要海量交互试错。基于模型的强化学习借助世界模型做规划或优化以缓解交互依赖。本文探索了另一种范式（PS-RWM）：让自主 LLM 编码智能体直接阅读“可读的世界模型”（即环境源代码），把环境动力学知识翻译为可执行的决策规则程序，再结合少量在线反馈或离线数据迭代精炼，完全无需针对任务的 RL 训练。跨多个在线与离线决策基准的实验显示，综合出的程序策略在大幅减少环境交互的前提下可追平或超越传统 RL 方法；进一步与无法读源码的策略综合对比，凸显了可读世界模型的价值。这些发现表明直接策略综合能够大幅削减试错依赖，对任务专属 RL 训练的必要性提出了反思。",
+          "method": "给定可读的环境源码作为显式世界模型，由 Coding Agent 解析状态转移与奖励结构并直接编写可执行控制程序，随后依据受控评估反馈或离线数据做少量迭代修补，并以独立随机种子评测。",
+          "results": "多基准在线/离线决策评测（作者自报）：PS-RWM 在多种基准上达到与传统 RL 相当或更高的策略回报，同时显著减少交互步数；消融对照证明读源码明显优于无源码黑盒策略综合（摘要与抓取正文未列出单基准精确数字，具体分数见正文实验表）。",
+          "limitation": "核心前提是“环境源码可读且逻辑可被代码解析”，在闭源真实软件、复杂视觉桌面或物理噪声世界等不可读黑盒环境中难以直接照搬；截至观察日未查到公开代码仓库。",
+          "heat": {
+            "unavailable": "近期新作（2026-11-25 发布），截至 2026-11-26 在 OpenAlex、Hugging Face Papers 与 GitHub 暂无可核验记录。"
+          }
+        },
+        {
+          "id": "arxiv:2611.25927",
+          "title": "Fast-JEPA: Advancing the Success-Latency Frontier for Latent World Models",
+          "authors_or_org": "Yao Zhang, Bin Yu, Shijie Lian, Haishan Liu, Changti Wu",
+          "published_on": "2026-11-19",
+          "url": "https://arxiv.org/abs/2611.25927",
+          "repo_url": "https://github.com/DeepCybo-PhysAI/Fast-JEPA",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "latent-wm",
+            "open-code",
+            "state-modeling"
+          ],
+          "intro": "解决隐空间世界模型（JEPA 类）测试时反复递归 rollout 规划太慢的问题：用锚定当前观测的直接终态查询跳过精修期递归推演，四基准平均成功率 96.50%、单步规划仅 10.88ms（比 INTACT 快 2.41 倍）。",
+          "abstract_zh": "隐空间世界模型可预测动作序列的结果，但在测试时通过递归 rollout 比较候选计划依然昂贵。作者提出 Fast-JEPA 隐空间世界模型规划框架，推动预测搜索的“成功率-延迟”帕累托前沿。Fast-JEPA 重组了预测计算：先构造目标导向计划引导搜索，随后直接预测完整候选动作序列的终态结果以高效比较，避免在精修阶段反复递归状态推演。在 PushT、Reacher、Cube 与 TwoRoom 四个任务上，Fast-JEPA 达到 96.50% 平均成功率（单步规划 10.88ms），规划速度较 INTACT 快 2.41 倍。此外提出 DynaGoal 基准评估动态分布外条件、执行截止期和受控响应延迟下的世界模型规划，Fast-JEPA 在 DynaGoal-Shift 和 DynaGoal-Deadline 上分别达到 73.83% 和 87.67% 平均成功率。",
+          "method": "复用同一个前向隐空间世界模型，通过“锚定当前观测表征”的 horizon 查询接口，先用中间预测构造候选动作，再直接一次性查询完整动作序列的终态表征来打分筛选，消除候选精修期的串行递归 rollout。",
+          "results": "连续控制模拟评测（PushT/Reacher/Cube/TwoRoom 与 DynaGoal，作者自报）：四基准平均成功率 96.50%、延迟 10.88ms（较 INTACT 规划快 2.41×）；DynaGoal-Shift 73.83%、DynaGoal-Deadline 87.67%。",
+          "limitation": "目前在连续控制物理模拟任务中验证，尚未迁移到高维离散动作与文字密集的 GUI/OS 数字世界模型规划场景。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 9,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.25927",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7237016250",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 24,
+                "source": "GitHub",
+                "url": "https://github.com/DeepCybo-PhysAI/Fast-JEPA",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2411.06559",
+          "title": "Is Your LLM Secretly a World Model of the Internet? Model-Based Planning for Web Agents",
+          "authors_or_org": "Yu Gu, Kai Zhang, Yuting Ning, Boyuan Zheng, Boyu Gou (OSU NLP Group)",
+          "published_on": "2024-11-10",
+          "url": "https://arxiv.org/abs/2411.06559",
+          "repo_url": "https://github.com/OSU-NLP-Group/WebDreamer",
+          "lane": "popular_backlist",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "GUI Agent",
+            "Computer Use"
+          ],
+          "tags": [
+            "dom-text-wm",
+            "state-modeling",
+            "open-code",
+            "real-eval"
+          ],
+          "intro": "数字/网页 World Model 代表性高热老作 WebDreamer：针对真实网页动作不可逆、无法做在线树搜索回溯的痛点，用 LLM 充当自然语言网页状态转移模型提前“脑内推演”两步再落子，效率比树搜索快 4–5 倍且 7B 专训模型可追平 GPT-4o。",
+          "abstract_zh": "基于大语言模型的网页智能体在自动化网页任务上展现出巨大潜力。近期研究表明树搜索等规划算法优于反应式规划，但与可重置沙盒不同，真实互联网充满不可逆操作，破坏了树搜索依赖回溯的前提，且过度依赖测试时搜索会严重损害效率。作者倡导面向网页智能体的基于模型规划（model-based planning），借助世界模型在执行前模拟并推演各候选动作的结果。论文提出两项核心工作：（1）WebDreamer 框架，用 LLM 同时充当世界模型（sim）与价值函数（score）模拟候选动作的未来轨迹再决策；（2）通过可扩展数据合成管线训练专用网页世界模型 Dreamer-7B。实证表明 WebDreamer 较反应式基线大幅提升，在沙盒环境 VisualWebArena 上与树搜索效果相当且效率高 4–5 倍，并在真实网站（Online-Mind2Web 与 Mind2Web-Live）上有效工作；专训的 Dreamer-7B 表现可媲美 GPT-4o。",
+          "method": "每步先生成若干候选动作，由文本/状态世界模型 sim 向前模拟 2 步网页状态变化，再由打分模型 score 评估模拟轨迹价值并仅执行最高分动作，从而在无需真实回溯的前提下获得前瞻规划收益；同时通过轨迹合成微调轻量 Dreamer-7B。",
+          "results": "沙盒与真实网站在线评测（VisualWebArena、Online-Mind2Web、Mind2Web-Live，作者自报）：相比反应式基线显著提分；在 VisualWebArena 上效果匹敌在线树搜索且效率高 4–5 倍；专用 Dreamer-7B 世界模型效果接近 GPT-4o。",
+          "limitation": "以自然语言描述而非像素/可执行 DOM 预测未来网页状态，对强依赖视觉排版细节或后端隐式状态的页面容易出现模拟幻觉，且每步仍需对多候选做前向模拟带来额外延迟。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 195,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W4404401752",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "votes",
+                "count": 16,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2411.06559",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 107,
+                "source": "GitHub",
+                "url": "https://github.com/OSU-NLP-Group/WebDreamer",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          },
+          "backlist_evidence": [
+            {
+              "summary": "OpenAlex 学术引用 195 次、官方仓库 107 星，是将 World Model 引入不可逆真实 Web Agent 规划的核心奠基工作，适合与像素派数字世界模型（如今日 Interactive Neural Computers）对照阅读。",
+              "url": "https://github.com/OSU-NLP-Group/WebDreamer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "Personal Agent",
+      "priority": "tier2",
+      "papers": [
+        {
+          "id": "arxiv:2611.29062",
+          "title": "HyperHarness: Learning to Generate Personalized Agent Harnesses from User Histories",
+          "authors_or_org": "Zhaoxuan Tan, Jiachen Zhao, Jingbo Yang, Zheyuan Liu, Chuhan Wang",
+          "published_on": "2026-11-21",
+          "url": "https://arxiv.org/abs/2611.29062",
+          "repo_url": "https://github.com/TamSiuhin/hyperharness-code",
+          "lane": "fresh",
+          "reading_tier": "deep",
+          "tags": [
+            "open-code",
+            "long-term-memory",
+            "preference-learning"
+          ],
+          "intro": "不再让所有用户共用同一套死板记忆检索流，而是训练一个共享的“历史→代码”生成器，部署时一次前向直接为新用户合成专属的可执行记忆检索与回答引导代码，九组设定七冠二亚且省 90.32% token。",
+          "abstract_zh": "个性化 LLM 智能体依赖围绕在模型外部的记忆与控制代码（agent harness）连接用户历史与下游决策。现有做法要么所有用户共用单一静态记忆流（部署省事但难以适配不同历史分布），要么逐用户做 Harness 优化（部署期反复评估候选成本高且原始日志监督稀疏含噪）。作者提出 HyperHarness，学习一个共享的“历史到 Harness”生成器，直接从用户被授权的历史记录中合成可执行的个性化检索与回答引导代码。训练时无需标准参考 Harness 也不更新回答模型，仅用跨训练用户的下游任务得分迭代优化共享生成器；部署时冻结的生成器单次前向即可为未见用户定制 Harness，免去逐用户搜索。在三个基准（PersonaMemv3、Mem-PAL、MemoryCD）和三个回答模型（Qwen3.5-9B、Qwen3.8-27B、GPT-5.6-Luna）构成的九组设定中，HyperHarness 拿下七个第一与两个第二，最高领先最强基线 5.95 分，同时相比长上下文提示削减 90.32% 回答期 token 开销。",
+          "method": "将个性化记忆工作流建模为元学习式的共享 history-to-code 生成器：以训练用户群体的下游任务效用为监督迭代改进生成器提示/构造流程，推理期给定未见用户历史一次性生成该用户专属的可执行检索与上下文编排函数。",
+          "results": "跨 3 基准（PersonaMemv3、Mem-PAL、MemoryCD）× 3 执行模型（Qwen3.5-9B、Qwen3.8-27B、GPT-5.6-Luna）共 9 组评测（作者自报）：7/9 第一、2/9 第二，最高超最强基线 +5.95 分，相比长上下文提示减少 90.32% 回答期 token。",
+          "limitation": "生成可执行个性化控制代码对用户历史长度、噪声分布与跨人群迁移仍具敏感性（作者在结论中亦指出 transfer 与 history sensitivity 仍是关键考量），且需在沙盒中安全隔离执行生成代码。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239414935",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 0,
+                "source": "GitHub",
+                "url": "https://github.com/TamSiuhin/hyperharness-code",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.25855",
+          "title": "HabitusMem: Belief Memory over Evolving User Preferences for LLM Agents",
+          "authors_or_org": "Yifan Lu, Gaoyang Guo, Wen Chen, Ziyun Zou, Jian Wu",
+          "published_on": "2026-11-19",
+          "url": "https://arxiv.org/abs/2611.25855",
+          "repo_url": "https://github.com/csyifan/HabitusMem",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "open-code",
+            "long-term-memory",
+            "preference-learning"
+          ],
+          "intro": "针对“用户偏好会随时间和场景演化、直接检索原始聊天记录容易误用过期偏好”的问题，把记忆建模为带“证据、适用范围、当前状态”的显式信念记录，按当前请求精准投影给冻结 Agent。",
+          "abstract_zh": "个性化 LLM 智能体必须按用户当前偏好行事，而偏好会在交互中演化且很少被完整说清。现有记忆系统仅存储和检索历史交互片段，把“哪条偏好还生效、适用于什么场景”留给下游智能体临场猜测，常导致误用过时或跨场景错配的偏好。作者将记忆重构为助手关于用户的“信念（belief）”，把用户建模为随每次交互不断显露与更新的潜在偏好状态，每条信念记录均显式标注证据（evidence）、适用范围（scope）与状态（status）。据此实现 HabitusMem，通过单个经训练的记忆写手（writer）面向冻结智能体输出与当前请求直接相关的信念文本记录。跨两个智能体家族在 PersonaMem-v2 和 VitaBench 2.0 上，HabitusMem 均在记忆系统中取得最佳表现；对照分析显示，基于当前请求的条件投影是问答提分的关键，而辅助训练任务则推动工具使用提升。",
+          "method": "训练统一记忆 writer 执行四项联合任务（直接写入、状态更新、请求条件投影、动作投影），从原始交互推断带 evidence/scope/status 三元结构字段的信念，只把适用于当前语境的信念投影给下游冻结 Agent。",
+          "results": "个性化问答与工具使用评测（PersonaMem-v2 与 VitaBench 2.0，跨两类 Agent 家族，作者自报）：在 PersonaMem-v2 紧凑记忆中准确率最高，在 VitaBench 2.0 非特权条件下取得最高全任务成功率（具体分项百分比见原文 Section 4.2）。",
+          "limitation": "需要专门训练的信念 writer 模型来维护状态更新与投影，当用户历史极长或出现隐晦反讽偏好时，显式文本信念的抽取与冲突消解仍受 writer 容量限制。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "votes",
+                "count": 2,
+                "source": "Hugging Face Papers",
+                "url": "https://huggingface.co/papers/2611.25855",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7237269694",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 0,
+                "source": "GitHub",
+                "url": "https://github.com/csyifan/HabitusMem",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        },
+        {
+          "id": "arxiv:2611.29804",
+          "title": "FORGETMENOT: Auditing Memory Driven Privacy Risks in Commercial AI Agents",
+          "authors_or_org": "Ismat Jarin, Tu Le, Athina Markopoulou",
+          "published_on": "2026-11-22",
+          "url": "https://arxiv.org/abs/2611.29804",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "privacy-permission",
+            "long-term-memory",
+            "no-code-yet"
+          ],
+          "intro": "对五款主流商用 AI 助手的长期记忆做了 3,800 场对话/600 万 token 的实测隐私审计：用户可见记忆平均只露出实际存下属性的约 20%，全部五款产品在“删除记忆”后都存在非零残留泄露。",
+          "abstract_zh": "商用 AI 智能体正广泛引入持久记忆与聊天历史记忆以提供个性化体验，但围绕记忆存储、披露、透明度与删除控制的真实隐私风险尚缺乏系统实证。作者提出审计框架 FORGETMENOT，在五款主流商用 AI 智能体上采集了约 3,800 场多轮会话（约 600 万 token）。实测发现这些智能体会保存涵盖人口统计、健康与敏感细节在内的广泛个人属性；更重要的是，用户可见的记忆界面平均仅揭示了智能体实际留存属性的约 20%，存在显著透明度鸿沟。作者提出的隐蔽记忆注入（SMI）技术还分别使 Copilot 和 Claude 存储的敏感个人属性额外增加 25% 和 15%。此外，记忆删除控制并不可靠：全部五款智能体在执行删除后均出现非零信息残留泄露，甚至涉及健康与自伤相关属性；概念验证还演示了向第三方邮件收件人的记忆泄露（Gemini 泄露率达 31.9%）。论文据此提出面向商用个人智能体的记忆隐私设计建议与合规启示。",
+          "method": "构建含已知溯源合成个人敏感属性（健康、PII、偏好等）的多轮会话审计协议，从存储广度、用户界面透明度、隐蔽注入（SMI）、删除后残留泄露及跨工具第三方外泄五个维度评测五款商用 Agent。",
+          "results": "商业产品黑盒实测（5 款主流商用 AI Agent、约 3,800 场多轮会话/6M token，作者自报）：用户可见记忆平均仅展示实际存储属性的 ~20%；SMI 使 Copilot/Claude 敏感记忆存储分别增加 25%/15%；全部 5 款产品删除后仍有非零残留泄露；第三方邮件外泄 PoC 中 Gemini 达 31.9%。",
+          "limitation": "商用产品后端记忆策略与安全护栏持续动态更新，审计数值反映特定测试窗口快照，且合成身份会话与真实长期自然交互分布存在一定差异；截至观察日未查到公开审计脚本仓库。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 0,
+                "source": "OpenAlex",
+                "url": "https://openalex.org/W7239433574",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
