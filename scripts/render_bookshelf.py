@@ -163,6 +163,8 @@ HTML_TEMPLATE = """<!doctype html>
       --accent-soft: rgba(44, 70, 84, 0.08);
       --seal: #9e3b33;
       --seal-soft: rgba(158, 59, 51, 0.08);
+      --warm: #9a6534;
+      --warm-soft: rgba(154, 101, 52, 0.09);
       --caution: #8c6239;
       --caution-bg: rgba(140, 98, 57, 0.08);
       --serif: "Iowan Old Style", "Palatino Linotype", "Source Serif 4", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
@@ -182,6 +184,8 @@ HTML_TEMPLATE = """<!doctype html>
       --accent-soft: rgba(155, 184, 199, 0.11);
       --seal: #d4766b;
       --seal-soft: rgba(212, 118, 107, 0.12);
+      --warm: #d4a36e;
+      --warm-soft: rgba(212, 163, 110, 0.12);
       --caution: #cfa270;
       --caution-bg: rgba(207, 162, 112, 0.1);
     }
@@ -200,7 +204,6 @@ HTML_TEMPLATE = """<!doctype html>
                         radial-gradient(circle at 85% 15%, rgba(44, 70, 84, 0.03), transparent 45%);
     }
 
-    /* Delicate top reading progress thread */
     .progress-rail {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -290,11 +293,10 @@ HTML_TEMPLATE = """<!doctype html>
     }
     .brand-sub {
       margin: 6px 0 0;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--ink-muted);
       font-family: var(--mono);
     }
-
     .masthead-controls {
       display: flex;
       flex-wrap: wrap;
@@ -318,10 +320,10 @@ HTML_TEMPLATE = """<!doctype html>
     }
     .ctrl-select { font-family: var(--mono); font-size: 0.8rem; }
 
-    /* Lead Pick — Editorial Monograph Feature */
+    /* Lead Pick */
     .lead-feature {
-      margin-top: 26px;
-      padding: 22px 26px;
+      margin-top: 24px;
+      padding: 20px 24px;
       background: var(--paper);
       border: 1px solid var(--rule);
       border-radius: 4px;
@@ -336,6 +338,7 @@ HTML_TEMPLATE = """<!doctype html>
     }
     .lead-kicker {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 10px;
       font-family: var(--mono);
@@ -343,34 +346,71 @@ HTML_TEMPLATE = """<!doctype html>
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--seal);
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
     .lead-kicker .sep { color: var(--rule-strong); }
     .lead-kicker .ref { color: var(--ink-muted); letter-spacing: 0.04em; text-transform: none; }
     .lead-heading {
-      margin: 0 0 8px;
+      margin: 0 0 7px;
       font-family: var(--serif);
-      font-size: 1.32rem;
+      font-size: 1.3rem;
       font-weight: 600;
       line-height: 1.35;
     }
-    .lead-heading a {
-      border-bottom: 1px solid transparent;
-    }
-    .lead-heading a:hover {
-      color: var(--ink);
-      border-bottom-color: var(--seal);
-    }
+    .lead-heading a { border-bottom: 1px solid transparent; }
+    .lead-heading a:hover { color: var(--ink); border-bottom-color: var(--seal); }
     .lead-body {
       margin: 0;
       color: var(--ink-2);
-      font-size: 0.94rem;
-      max-width: 82ch;
+      font-size: 0.93rem;
+      max-width: 84ch;
     }
 
-    /* Understated Filter & Search Strip */
+    /* Hot Fresh Pulse Strip */
+    .hot-pulse {
+      margin-top: 12px;
+      padding: 9px 14px;
+      background: var(--paper-inset);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 14px;
+      font-size: 0.82rem;
+    }
+    .hot-pulse-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .hot-pulse-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      align-items: center;
+    }
+    .hot-chip {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      color: var(--ink-2);
+      font-size: 0.82rem;
+    }
+    .hot-chip:hover { color: var(--seal); }
+    .hot-chip-score {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--seal);
+    }
+
+    /* Understated Filter, Sort & Search Strip */
     .filter-bar {
-      margin-top: 24px;
+      margin-top: 22px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--rule);
       display: flex;
@@ -382,14 +422,14 @@ HTML_TEMPLATE = """<!doctype html>
     .filter-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px 16px;
+      gap: 4px 15px;
     }
     .filter-tab {
       background: none;
       border: none;
       padding: 4px 0;
       font: inherit;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--ink-muted);
       cursor: pointer;
       position: relative;
@@ -413,12 +453,43 @@ HTML_TEMPLATE = """<!doctype html>
       color: var(--ink-muted);
       margin-left: 4px;
     }
+    .filter-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .sort-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      font-family: var(--mono);
+    }
+    .sort-btn {
+      background: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-family: var(--sans);
+      font-size: 0.79rem;
+      color: var(--ink-muted);
+      cursor: pointer;
+    }
+    .sort-btn:hover { color: var(--ink); }
+    .sort-btn.active {
+      color: var(--ink);
+      background: var(--paper);
+      border-color: var(--rule-strong);
+      font-weight: 500;
+    }
     .search-wrap {
       display: flex;
       align-items: center;
       border-bottom: 1px solid var(--rule-strong);
       padding-bottom: 2px;
-      min-width: 210px;
+      min-width: 190px;
       transition: border-color 0.16s ease;
     }
     .search-wrap:focus-within { border-bottom-color: var(--ink); }
@@ -427,14 +498,14 @@ HTML_TEMPLATE = """<!doctype html>
       background: transparent;
       color: var(--ink);
       font: inherit;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       width: 100%;
       outline: none;
       padding: 2px 4px;
     }
     .search-input::placeholder { color: var(--ink-muted); }
 
-    /* Two-column editorial workspace (quiet left spine + generous main reading column) */
+    /* Two-column editorial workspace */
     .workspace {
       display: grid;
       grid-template-columns: 204px minmax(0, 1fr);
@@ -478,51 +549,36 @@ HTML_TEMPLATE = """<!doctype html>
       color: var(--ink-2);
       border-left: 2px solid transparent;
     }
-    .spine-link:hover {
-      background: var(--paper);
-      color: var(--ink);
-    }
+    .spine-link:hover { background: var(--paper); color: var(--ink); }
     .spine-link.current {
       color: var(--ink);
       font-weight: 600;
       border-left-color: var(--seal);
       background: var(--paper);
     }
-    .spine-left {
-      display: flex;
-      align-items: baseline;
-      gap: 7px;
-      min-width: 0;
-    }
-    .spine-num {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      color: var(--ink-muted);
-    }
+    .spine-left { display: flex; align-items: baseline; gap: 7px; min-width: 0; }
+    .spine-num { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-muted); }
     .spine-tier-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
-      transform: translateY(-1px);
-      flex-shrink: 0;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); display: inline-block;
+      transform: translateY(-1px); flex-shrink: 0;
     }
-    .spine-cnt {
-      font-family: var(--mono);
-      font-size: 0.74rem;
-      color: var(--ink-muted);
-    }
+    .spine-cnt { font-family: var(--mono); font-size: 0.74rem; color: var(--ink-muted); }
     .spine-legend {
       margin-top: 16px;
       padding-top: 12px;
       border-top: 1px solid var(--rule);
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--ink-muted);
-      line-height: 1.6;
+      line-height: 1.75;
+    }
+    .legend-pips {
+      display: inline-flex;
+      gap: 3px;
+      vertical-align: middle;
+      margin-right: 4px;
     }
 
-    /* Mobile topic strip (hidden on desktop) */
     .mobile-topics {
       display: none;
       overflow-x: auto;
@@ -559,17 +615,8 @@ HTML_TEMPLATE = """<!doctype html>
       border-bottom: 1px solid var(--ink);
       margin-bottom: 6px;
     }
-    .topic-head-left {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .topic-index {
-      font-family: var(--mono);
-      font-size: 0.8rem;
-      color: var(--ink-muted);
-    }
+    .topic-head-left { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .topic-index { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-muted); }
     .topic-name {
       margin: 0;
       font-family: var(--serif);
@@ -585,11 +632,7 @@ HTML_TEMPLATE = """<!doctype html>
       text-transform: uppercase;
     }
     .topic-tier.is-t1 { color: var(--accent); }
-    .topic-count {
-      font-family: var(--mono);
-      font-size: 0.78rem;
-      color: var(--ink-muted);
-    }
+    .topic-count { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-muted); }
     .topic-note {
       margin: 10px 0 4px;
       padding: 9px 13px;
@@ -603,7 +646,7 @@ HTML_TEMPLATE = """<!doctype html>
     article.entry {
       padding: 20px 0;
       border-bottom: 1px solid var(--rule);
-      transition: background-color 0.16s ease;
+      scroll-margin-top: 32px;
     }
     article.entry:last-child { border-bottom-color: var(--rule-strong); }
 
@@ -635,21 +678,17 @@ HTML_TEMPLATE = """<!doctype html>
     }
     .tier-indicator.deep::before {
       content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
       background: var(--seal);
     }
     .tier-indicator.scan::before {
       content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
       border: 1.5px solid var(--accent);
     }
     .lane-mark {
       font-family: var(--sans);
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       color: var(--seal);
       background: var(--seal-soft);
       padding: 1px 7px;
@@ -657,26 +696,136 @@ HTML_TEMPLATE = """<!doctype html>
     }
     .dir-mark {
       font-family: var(--mono);
-      font-size: 0.73rem;
+      font-size: 0.72rem;
       color: var(--accent);
       background: var(--accent-soft);
       padding: 1px 7px;
       border-radius: 3px;
     }
+
+    /* Refined Heat Micro-Widget */
     .eyebrow-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .heat-readout {
+    .heat-widget {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 9px;
+      border-radius: 4px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
       font-family: var(--mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
+      color: var(--ink-2);
+    }
+    .heat-widget.is-hot {
+      border-color: rgba(158, 59, 51, 0.3);
+      background: var(--seal-soft);
+    }
+    .heat-widget.is-warm {
+      border-color: rgba(154, 101, 52, 0.28);
+      background: var(--warm-soft);
+    }
+    .heat-widget.is-cold {
+      background: transparent;
+      border-style: dashed;
       color: var(--ink-muted);
     }
-    .heat-readout strong {
-      color: var(--ink-2);
-      font-weight: 600;
+    .heat-score-num {
+      font-weight: 700;
+      letter-spacing: -0.01em;
     }
+    .heat-widget.is-hot .heat-score-num { color: var(--seal); }
+    .heat-widget.is-warm .heat-score-num { color: var(--warm); }
+    .heat-pips {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .pip {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      border: 1px solid var(--rule-strong);
+      display: inline-block;
+    }
+    .pip.on-cit { background: var(--ink-2); border-color: var(--ink-2); }
+    .pip.on-comm { background: var(--seal); border-color: var(--seal); }
+    .pip.on-star { background: var(--accent); border-color: var(--accent); }
+    .heat-dims {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding-left: 7px;
+      border-left: 1px solid var(--rule);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+    .heat-dim-link {
+      color: var(--ink-2);
+      white-space: nowrap;
+    }
+    .heat-dim-link:hover {
+      color: var(--seal);
+      text-decoration: underline;
+    }
+    .heat-dim-link .k {
+      color: var(--ink-muted);
+      margin-right: 2px;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+    }
+
+    /* Subtle hover tooltip on heat widget */
+    .heat-popover {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      width: 248px;
+      padding: 10px 12px;
+      background: var(--paper);
+      border: 1px solid var(--rule-strong);
+      border-radius: 5px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      font-family: var(--sans);
+      font-size: 0.76rem;
+      color: var(--ink-2);
+      line-height: 1.55;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s ease;
+      z-index: 30;
+      pointer-events: none;
+    }
+    .heat-widget:hover .heat-popover {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .pop-head {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+      padding-bottom: 5px;
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pop-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .pop-row .v { font-family: var(--mono); color: var(--ink); }
+    .pop-row .miss { font-style: italic; color: var(--ink-muted); }
+
     .star-btn {
       background: none;
       border: none;
@@ -698,18 +847,9 @@ HTML_TEMPLATE = """<!doctype html>
       line-height: 1.42;
       letter-spacing: 0.005em;
     }
-    .entry-title a {
-      border-bottom: 1px solid transparent;
-    }
-    .entry-title a:hover {
-      color: var(--ink);
-      border-bottom-color: var(--ink-muted);
-    }
-    .entry-authors {
-      margin: 3px 0 0;
-      font-size: 0.81rem;
-      color: var(--ink-muted);
-    }
+    .entry-title a { border-bottom: 1px solid transparent; }
+    .entry-title a:hover { color: var(--ink); border-bottom-color: var(--ink-muted); }
+    .entry-authors { margin: 3px 0 0; font-size: 0.81rem; color: var(--ink-muted); }
     .entry-intro {
       margin: 10px 0 11px;
       font-size: 0.95rem;
@@ -724,12 +864,7 @@ HTML_TEMPLATE = """<!doctype html>
       justify-content: space-between;
       gap: 8px 14px;
     }
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
     .micro-tag {
       font-family: var(--mono);
       font-size: 0.72rem;
@@ -744,9 +879,7 @@ HTML_TEMPLATE = """<!doctype html>
       background: var(--caution-bg);
       border-color: transparent;
     }
-    .micro-tag.sec-link {
-      border-style: dashed;
-    }
+    .micro-tag.sec-link { border-style: dashed; }
 
     .entry-actions {
       display: flex;
@@ -760,15 +893,10 @@ HTML_TEMPLATE = """<!doctype html>
       border-bottom: 1px solid var(--rule-strong);
       padding-bottom: 1px;
     }
-    .entry-actions a:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
+    .entry-actions a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
     /* Expandable Deep-Read Drawer */
-    details.drawer {
-      margin-top: 10px;
-    }
+    details.drawer { margin-top: 10px; }
     details.drawer summary {
       list-style: none;
       cursor: pointer;
@@ -797,7 +925,7 @@ HTML_TEMPLATE = """<!doctype html>
       border: 1px solid var(--rule);
       border-radius: 4px;
       display: grid;
-      gap: 14px;
+      gap: 15px;
     }
     .detail-item {
       display: grid;
@@ -817,15 +945,87 @@ HTML_TEMPLATE = """<!doctype html>
       line-height: 1.75;
       margin: 0;
     }
-    .detail-val ul {
-      margin: 0;
-      padding-left: 18px;
-    }
+    .detail-val ul { margin: 0; padding-left: 18px; }
     .detail-val li { margin-bottom: 3px; }
-    .detail-val a {
+    .detail-val a { color: var(--accent); border-bottom: 1px solid var(--rule-strong); }
+
+    /* 3-Column Heat Ledger inside Drawer */
+    .heat-ledger {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .ledger-cell {
+      padding: 10px 12px;
+      background: var(--paper-inset);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .ledger-cell.is-missing {
+      background: transparent;
+      border-style: dashed;
+      opacity: 0.72;
+    }
+    .ledger-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+    }
+    .ledger-weight {
+      font-family: var(--mono);
+      font-size: 0.69rem;
+      color: var(--ink-muted);
+    }
+    .ledger-num-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .ledger-num {
+      font-family: var(--mono);
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .ledger-cell.is-missing .ledger-num {
+      font-family: var(--sans);
+      font-size: 0.84rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+    }
+    .ledger-contrib {
+      font-family: var(--mono);
+      font-size: 0.74rem;
+      color: var(--accent);
+    }
+    .ledger-src {
+      font-size: 0.73rem;
+      color: var(--ink-muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .ledger-src a {
       color: var(--accent);
       border-bottom: 1px solid var(--rule-strong);
     }
+    .ledger-foot {
+      margin-top: 8px;
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .ledger-foot strong { font-family: var(--mono); color: var(--ink-2); }
 
     .empty-state {
       padding: 20px 0;
@@ -834,7 +1034,6 @@ HTML_TEMPLATE = """<!doctype html>
       font-style: italic;
     }
 
-    /* Footer */
     footer.colophon {
       margin-top: 48px;
       padding-top: 18px;
@@ -847,11 +1046,8 @@ HTML_TEMPLATE = """<!doctype html>
       font-size: 0.8rem;
       color: var(--ink-muted);
     }
-    .colophon-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    .colophon-actions { display: flex; align-items: center; gap: 10px; }
+
     .toast {
       position: fixed;
       bottom: 22px;
@@ -873,8 +1069,10 @@ HTML_TEMPLATE = """<!doctype html>
       .workspace { grid-template-columns: 1fr; gap: 0; }
       aside.spine { display: none; }
       .mobile-topics { display: flex; }
-      .detail-item { grid-template-columns: 1fr; gap: 3px; }
-      .lead-feature { padding: 18px 18px; }
+      .detail-item { grid-template-columns: 1fr; gap: 4px; }
+      .heat-ledger { grid-template-columns: 1fr; }
+      .heat-popover { display: none; }
+      .lead-feature { padding: 18px; }
       .page-shell { padding: 18px 16px 64px; }
     }
   </style>
@@ -902,6 +1100,7 @@ HTML_TEMPLATE = """<!doctype html>
     </header>
 
     <div id="leadContainer"></div>
+    <div id="hotPulseContainer"></div>
 
     <div class="filter-bar">
       <div class="filter-tabs" id="filterPills">
@@ -914,8 +1113,16 @@ HTML_TEMPLATE = """<!doctype html>
         <button class="filter-tab" data-filter="backlist">高热老作</button>
         <button class="filter-tab" data-filter="starred">★ 收藏<span class="tab-cnt" id="starCnt">0</span></button>
       </div>
-      <div class="search-wrap">
-        <input class="search-input" id="searchInput" type="search" placeholder="检索标题、导读、标签..." />
+      <div class="filter-right">
+        <div class="sort-group" id="sortGroup">
+          <span>排序</span>
+          <button class="sort-btn active" data-sort="default" type="button">默认</button>
+          <button class="sort-btn" data-sort="heat" type="button">热度 ↓</button>
+          <button class="sort-btn" data-sort="date" type="button">最新 ↓</button>
+        </div>
+        <div class="search-wrap">
+          <input class="search-input" id="searchInput" type="search" placeholder="检索标题、导读、标签..." />
+        </div>
       </div>
     </div>
 
@@ -929,6 +1136,13 @@ HTML_TEMPLATE = """<!doctype html>
           <div><span class="spine-tier-dot"></span> Tier 1 核心主线</div>
           <div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--seal);margin-right:4px;"></span>实心点：深度精读</div>
           <div><span style="display:inline-block;width:6px;height:6px;border-radius:50%;border:1.5px solid var(--accent);margin-right:4px;"></span>空心圈：新作速览</div>
+          <div style="margin-top:6px;">
+            <span class="legend-pips">
+              <span class="pip on-cit" title="学术引用"></span>
+              <span class="pip on-comm" title="社区讨论"></span>
+              <span class="pip on-star" title="仓库星标"></span>
+            </span>热度三维覆盖（引/社/星）
+          </div>
         </div>
       </aside>
       <main id="content"></main>
@@ -938,7 +1152,7 @@ HTML_TEMPLATE = """<!doctype html>
       <span id="statsFooter"></span>
       <div class="colophon-actions">
         <button class="ctrl-btn" id="exportStarBtn" type="button" title="将已点星收藏的论文复制为 feedback.jsonl 格式">复制收藏反馈 JSONL</button>
-        <span>Daily Paper Skill · Schema v1.1</span>
+        <span>Daily Paper Skill · Heat v1</span>
       </div>
     </footer>
   </div>
@@ -959,6 +1173,7 @@ HTML_TEMPLATE = """<!doctype html>
 
     let currentIdx = 0;
     let activeFilter = "all";
+    let activeSort = "default";
     let searchQuery = "";
     let allExpanded = false;
     let starredMap = {};
@@ -986,22 +1201,178 @@ HTML_TEMPLATE = """<!doctype html>
         .replace(/"/g, "&quot;");
     }
 
-    function computeHeat(heat) {
+    function fmtNum(n) {
+      if (n >= 10000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+      if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
+      return String(n);
+    }
+
+    function analyzeHeat(heat) {
       const sigs = (heat && Array.isArray(heat.signals)) ? heat.signals : [];
-      if (!sigs.length) return { score: null, coverage: 0 };
-      let cit = null, votes = null, comments = null, stars = null;
+      let citSig = null, voteSig = null, commSig = null, starSig = null;
       for (const s of sigs) {
         if (typeof s.count !== "number") continue;
-        if (s.kind === "citations") cit = cit === null ? s.count : Math.max(cit, s.count);
-        if (s.kind === "votes") votes = votes === null ? s.count : Math.max(votes, s.count);
-        if (s.kind === "comments") comments = comments === null ? s.count : Math.max(comments, s.count);
-        if (s.kind === "stars") stars = stars === null ? s.count : Math.max(stars, s.count);
+        if (s.kind === "citations" && (!citSig || s.count > citSig.count)) citSig = s;
+        if (s.kind === "votes" && (!voteSig || s.count > voteSig.count)) voteSig = s;
+        if (s.kind === "comments" && (!commSig || s.count > commSig.count)) commSig = s;
+        if (s.kind === "stars" && (!starSig || s.count > starSig.count)) starSig = s;
       }
-      let total = 0, cov = 0;
-      if (cit !== null) { total += cit * 3; cov++; }
-      if (votes !== null || comments !== null) { total += Math.max(votes || 0, (comments || 0) * 2); cov++; }
-      if (stars !== null) { total += stars * 0.1; cov++; }
-      return cov ? { score: Math.round(total), coverage: cov } : { score: null, coverage: 0 };
+      const citContrib = citSig ? citSig.count * 3 : null;
+      let commContrib = null;
+      let primaryCommSig = null;
+      if (voteSig || commSig) {
+        const vScore = voteSig ? voteSig.count : 0;
+        const cScore = commSig ? commSig.count * 2 : 0;
+        if (cScore > vScore && commSig) {
+          commContrib = cScore;
+          primaryCommSig = commSig;
+        } else {
+          commContrib = vScore;
+          primaryCommSig = voteSig || commSig;
+        }
+      }
+      const starContrib = starSig ? starSig.count * 0.1 : null;
+
+      let cov = 0;
+      let rawTotal = 0;
+      if (citContrib !== null) { rawTotal += citContrib; cov++; }
+      if (commContrib !== null) { rawTotal += commContrib; cov++; }
+      if (starContrib !== null) { rawTotal += starContrib; cov++; }
+
+      const score = cov > 0 ? Math.round(rawTotal) : null;
+      return {
+        score,
+        coverage: cov,
+        citSig, voteSig, commSig, primaryCommSig, starSig,
+        citContrib, commContrib, starContrib,
+        unavailable: heat?.unavailable || "",
+      };
+    }
+
+    function renderHeatWidget(paper) {
+      const h = analyzeHeat(paper.heat);
+      if (h.score === null) {
+        return `
+          <div class="heat-widget is-cold" title="${esc(h.unavailable || "暂无可核验外部热度")}">
+            <span>新作冷启动</span>
+            <span class="heat-pips">
+              <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+            </span>
+            <div class="heat-popover">
+              <div class="pop-head"><span>Heat v1</span><span>覆盖 0/3</span></div>
+              <div>${esc(h.unavailable || "近期刚发布，OpenAlex / HF Papers / GitHub 暂未收录外部记录。请结合导读与标签判断。")}</div>
+            </div>
+          </div>`;
+      }
+
+      const heatClass = h.score >= 50 ? "is-hot" : (h.score >= 10 ? "is-warm" : "");
+      const dimParts = [];
+      if (h.citSig) {
+        dimParts.push(`<a class="heat-dim-link" href="${esc(h.citSig.url)}" target="_blank" rel="noopener" title="OpenAlex / 学术引用"><span class="k">引</span>${fmtNum(h.citSig.count)}</a>`);
+      }
+      if (h.primaryCommSig) {
+        const unit = h.primaryCommSig.kind === "comments" ? "评" : "票";
+        dimParts.push(`<a class="heat-dim-link" href="${esc(h.primaryCommSig.url)}" target="_blank" rel="noopener" title="${esc(h.primaryCommSig.source)}"><span class="k">${unit}</span>${fmtNum(h.primaryCommSig.count)}</a>`);
+      }
+      if (h.starSig) {
+        dimParts.push(`<a class="heat-dim-link" href="${esc(h.starSig.url)}" target="_blank" rel="noopener" title="GitHub 官方仓库星标"><span class="k">星</span>${fmtNum(h.starSig.count)}</a>`);
+      }
+
+      const popCit = h.citSig
+        ? `<span class="v">${h.citSig.count} × 3 = ${h.citContrib}</span>`
+        : `<span class="miss">缺项（不计 0）</span>`;
+      const popComm = h.primaryCommSig
+        ? `<span class="v">${h.voteSig ? h.voteSig.count + "票" : ""}${h.voteSig && h.commSig ? " / " : ""}${h.commSig ? h.commSig.count + "评" : ""} → ${h.commContrib}</span>`
+        : `<span class="miss">缺项（不计 0）</span>`;
+      const popStar = h.starSig
+        ? `<span class="v">${h.starSig.count} × 0.1 = ${h.starContrib.toFixed(1)}</span>`
+        : `<span class="miss">缺项（不计 0）</span>`;
+
+      return `
+        <div class="heat-widget ${heatClass}">
+          <span class="heat-score-num">${fmtNum(h.score)}</span>
+          <span class="heat-pips" aria-label="覆盖度 ${h.coverage}/3">
+            <span class="pip ${h.citSig ? "on-cit" : ""}"></span>
+            <span class="pip ${h.primaryCommSig ? "on-comm" : ""}"></span>
+            <span class="pip ${h.starSig ? "on-star" : ""}"></span>
+          </span>
+          ${dimParts.length ? `<span class="heat-dims">${dimParts.join("")}</span>` : ""}
+          <div class="heat-popover">
+            <div class="pop-head"><span>热度指数 ${h.score}</span><span>覆盖 ${h.coverage}/3</span></div>
+            <div class="pop-row"><span>学术引用</span>${popCit}</div>
+            <div class="pop-row"><span>社区讨论</span>${popComm}</div>
+            <div class="pop-row"><span>仓库关注</span>${popStar}</div>
+          </div>
+        </div>`;
+    }
+
+    function renderHeatLedger(paper) {
+      const h = analyzeHeat(paper.heat);
+      if (h.score === null) {
+        return `
+          <div class="detail-val">
+            <div class="heat-ledger">
+              <div class="ledger-cell is-missing"><div class="ledger-top"><span>学术引用</span><span class="ledger-weight">× 3</span></div><div class="ledger-num">暂无记录</div></div>
+              <div class="ledger-cell is-missing"><div class="ledger-top"><span>社区讨论</span><span class="ledger-weight">max(票, 评×2)</span></div><div class="ledger-num">暂无记录</div></div>
+              <div class="ledger-cell is-missing"><div class="ledger-top"><span>仓库关注</span><span class="ledger-weight">× 0.1</span></div><div class="ledger-num">暂无记录</div></div>
+            </div>
+            <div class="ledger-foot">
+              <span>${esc(h.unavailable || "暂无可核验外部热度数据")}</span>
+              <span>覆盖度 <strong>0/3</strong></span>
+            </div>
+          </div>`;
+      }
+
+      const citCell = h.citSig ? `
+        <div class="ledger-cell">
+          <div class="ledger-top"><span>学术引用</span><span class="ledger-weight">× 3</span></div>
+          <div class="ledger-num-row">
+            <span class="ledger-num">${h.citSig.approximate ? "≈" : ""}${h.citSig.count.toLocaleString()}</span>
+            <span class="ledger-contrib">+${h.citContrib}</span>
+          </div>
+          <div class="ledger-src"><span>${esc(h.citSig.source)} · ${esc(h.citSig.observed_on)}</span><a href="${esc(h.citSig.url)}" target="_blank" rel="noopener">核验 ↗</a></div>
+        </div>` : `
+        <div class="ledger-cell is-missing">
+          <div class="ledger-top"><span>学术引用</span><span class="ledger-weight">× 3</span></div>
+          <div class="ledger-num">缺项（不计 0）</div>
+        </div>`;
+
+      const commCell = h.primaryCommSig ? `
+        <div class="ledger-cell">
+          <div class="ledger-top"><span>社区讨论</span><span class="ledger-weight">max(票, 评×2)</span></div>
+          <div class="ledger-num-row">
+            <span class="ledger-num">${h.voteSig ? h.voteSig.count + " 票" : ""}${h.voteSig && h.commSig ? " · " : ""}${h.commSig ? h.commSig.count + " 评" : ""}</span>
+            <span class="ledger-contrib">+${h.commContrib}</span>
+          </div>
+          <div class="ledger-src"><span>${esc(h.primaryCommSig.source)} · ${esc(h.primaryCommSig.observed_on)}</span><a href="${esc(h.primaryCommSig.url)}" target="_blank" rel="noopener">核验 ↗</a></div>
+        </div>` : `
+        <div class="ledger-cell is-missing">
+          <div class="ledger-top"><span>社区讨论</span><span class="ledger-weight">max(票, 评×2)</span></div>
+          <div class="ledger-num">缺项（不计 0）</div>
+        </div>`;
+
+      const starCell = h.starSig ? `
+        <div class="ledger-cell">
+          <div class="ledger-top"><span>仓库关注</span><span class="ledger-weight">× 0.1</span></div>
+          <div class="ledger-num-row">
+            <span class="ledger-num">${h.starSig.count.toLocaleString()} ★</span>
+            <span class="ledger-contrib">+${h.starContrib.toFixed(1)}</span>
+          </div>
+          <div class="ledger-src"><span>${esc(h.starSig.source)} · ${esc(h.starSig.observed_on)}</span><a href="${esc(h.starSig.url)}" target="_blank" rel="noopener">核验 ↗</a></div>
+        </div>` : `
+        <div class="ledger-cell is-missing">
+          <div class="ledger-top"><span>仓库关注</span><span class="ledger-weight">× 0.1</span></div>
+          <div class="ledger-num">缺项（不计 0）</div>
+        </div>`;
+
+      return `
+        <div class="detail-val">
+          <div class="heat-ledger">${citCell}${commCell}${starCell}</div>
+          <div class="ledger-foot">
+            <span>综合指数 <strong>${h.score}</strong> · 覆盖度 <strong>${h.coverage}/3</strong></span>
+            <span>仅反映外部关注度，近期新作常处冷启动期，不代表研究质量排序</span>
+          </div>
+        </div>`;
     }
 
     function saveStars() {
@@ -1029,17 +1400,21 @@ HTML_TEMPLATE = """<!doctype html>
       return true;
     }
 
-    function renderHeatSignals(paper) {
-      const heat = paper.heat || {};
-      const sigs = heat.signals || [];
-      if (!sigs.length) {
-        return `<p class="detail-val">${esc(heat.unavailable || "暂无可核验外部热度数据")}</p>`;
+    function sortPapers(papers) {
+      if (activeSort === "default") return papers;
+      const copy = [...papers];
+      if (activeSort === "heat") {
+        copy.sort((a, b) => {
+          const ha = analyzeHeat(a.heat);
+          const hb = analyzeHeat(b.heat);
+          const sa = ha.score === null ? -1 : ha.score;
+          const sb = hb.score === null ? -1 : hb.score;
+          return sb - sa || hb.coverage - ha.coverage;
+        });
+      } else if (activeSort === "date") {
+        copy.sort((a, b) => String(b.published_on || "").localeCompare(String(a.published_on || "")));
       }
-      const kindMap = { citations: "学术引用", votes: "社区投票", comments: "社区评论", stars: "GitHub 星标" };
-      const items = sigs.map(s =>
-        `<li>${kindMap[s.kind] || s.kind} · ${esc(s.source)} <strong>${s.approximate ? "约 " : ""}${s.count}</strong>（${esc(s.observed_on)}） · <a href="${esc(s.url)}" target="_blank" rel="noopener">查证来源 ↗</a>${s.note ? " — " + esc(s.note) : ""}</li>`
-      ).join("");
-      return `<div class="detail-val"><ul>${items}</ul></div>`;
+      return copy;
     }
 
     let spyObserver = null;
@@ -1060,6 +1435,12 @@ HTML_TEMPLATE = """<!doctype html>
         }
       }, { rootMargin: "-12% 0px -72% 0px", threshold: 0 });
       document.querySelectorAll("section.topic-section").forEach(sec => spyObserver.observe(sec));
+    }
+
+    function shortTitle(title) {
+      const colon = title.indexOf(":");
+      if (colon > 2 && colon <= 34) return title.slice(0, colon);
+      return title.length > 34 ? title.slice(0, 33) + "…" : title;
     }
 
     function render() {
@@ -1092,13 +1473,38 @@ HTML_TEMPLATE = """<!doctype html>
           <p class="lead-body">${esc(issue.lead.reason)}</p>
         </section>`;
 
+      // Top fresh papers by verified heat for quick pulse navigation
+      const hotFresh = allPapers
+        .filter(x => x.paper.lane === "fresh")
+        .map(x => ({ paper: x.paper, h: analyzeHeat(x.paper.heat) }))
+        .filter(x => x.h.score !== null && x.h.score > 0)
+        .sort((a, b) => b.h.score - a.h.score)
+        .slice(0, 4);
+
+      const pulseEl = document.getElementById("hotPulseContainer");
+      if (hotFresh.length) {
+        pulseEl.innerHTML = `
+          <div class="hot-pulse">
+            <span class="hot-pulse-label">近期新作热度速览</span>
+            <div class="hot-pulse-items">
+              ${hotFresh.map(x => `
+                <a class="hot-chip" href="#paper-${esc(x.paper.id)}">
+                  <span>${esc(shortTitle(x.paper.title))}</span>
+                  <span class="hot-chip-score">${x.h.score}</span>
+                </a>`).join('<span style="color:var(--rule-strong)">·</span>')}
+            </div>
+          </div>`;
+      } else {
+        pulseEl.innerHTML = "";
+      }
+
       const spineParts = [];
       const mobileParts = [];
       const secParts = [];
       let visibleCount = 0;
 
       issue.sections.forEach((sec, idx) => {
-        const filtered = sec.papers.filter(p => matchesFilter(p, sec));
+        const filtered = sortPapers(sec.papers.filter(p => matchesFilter(p, sec)));
         visibleCount += filtered.length;
         const num = String(idx + 1).padStart(2, "0");
         const isT1 = sec.priority === "tier1";
@@ -1119,10 +1525,6 @@ HTML_TEMPLATE = """<!doctype html>
         const noteHtml = sec.note ? `<div class="topic-note">${esc(sec.note)}</div>` : "";
         const cardsHtml = filtered.length ? filtered.map(p => {
           const tier = p.reading_tier || "deep";
-          const h = computeHeat(p.heat);
-          const heatHtml = h.score === null
-            ? `<span class="heat-readout" title="暂无外部热度记录">热度 —</span>`
-            : `<span class="heat-readout" title="Heat v1 = 引用×3 + max(投票×1, 评论×2) + Star×0.1">热度 <strong>${h.score}</strong> · ${h.coverage}/3</span>`;
           const isStarred = !!starredMap[p.id];
 
           const dirHtml = (p.directions || []).map(d => `<span class="dir-mark">${esc(d)}</span>`).join("");
@@ -1153,7 +1555,7 @@ HTML_TEMPLATE = """<!doctype html>
                   ${dirHtml}
                 </div>
                 <div class="eyebrow-right">
-                  ${heatHtml}
+                  ${renderHeatWidget(p)}
                   <button class="star-btn ${isStarred ? "starred" : ""}" data-star-id="${esc(p.id)}" data-star-title="${esc(p.title)}" title="${isStarred ? "取消收藏" : "收藏这篇论文"}">${isStarred ? "★" : "☆"}</button>
                 </div>
               </div>
@@ -1172,13 +1574,13 @@ HTML_TEMPLATE = """<!doctype html>
               </div>
 
               <details class="drawer" ${allExpanded ? "open" : ""}>
-                <summary>展开细读（摘要译述 · 方法 · 实验 · 局限）</summary>
+                <summary>展开细读（摘要译述 · 方法 · 实验 · 局限 · 热度账本）</summary>
                 <div class="drawer-body">
                   <div class="detail-item"><div class="detail-label">摘要译述</div><p class="detail-val">${esc(p.abstract_zh)}</p></div>
                   <div class="detail-item"><div class="detail-label">方法论</div><p class="detail-val">${esc(p.method)}</p></div>
                   <div class="detail-item"><div class="detail-label">实验结果</div><p class="detail-val">${esc(p.results)}</p></div>
                   <div class="detail-item"><div class="detail-label">关键局限</div><p class="detail-val">${esc(p.limitation)}</p></div>
-                  <div class="detail-item"><div class="detail-label">热度明细</div>${renderHeatSignals(p)}</div>
+                  <div class="detail-item"><div class="detail-label">热度账本</div>${renderHeatLedger(p)}</div>
                   ${awardRow}
                   ${backlistRow}
                 </div>
@@ -1210,7 +1612,6 @@ HTML_TEMPLATE = """<!doctype html>
       setupScrollSpy();
     }
 
-    // Init date options
     ISSUES.forEach((iss, i) => {
       const opt = document.createElement("option");
       opt.value = i;
@@ -1231,6 +1632,14 @@ HTML_TEMPLATE = """<!doctype html>
       render();
     });
 
+    document.getElementById("sortGroup").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-sort]");
+      if (!btn) return;
+      activeSort = btn.dataset.sort;
+      document.querySelectorAll("#sortGroup .sort-btn").forEach(b => b.classList.toggle("active", b === btn));
+      render();
+    });
+
     searchInput.addEventListener("input", () => {
       searchQuery = searchInput.value.trim().toLowerCase();
       render();
@@ -1242,7 +1651,6 @@ HTML_TEMPLATE = """<!doctype html>
       document.querySelectorAll("details.drawer").forEach(d => { d.open = allExpanded; });
     });
 
-    // Star / bookmark handler
     document.getElementById("content").addEventListener("click", (e) => {
       const btn = e.target.closest("button[data-star-id]");
       if (!btn) return;
@@ -1264,7 +1672,6 @@ HTML_TEMPLATE = """<!doctype html>
       if (activeFilter === "starred") render();
     });
 
-    // Export starred entries as feedback.jsonl lines
     document.getElementById("exportStarBtn").addEventListener("click", async () => {
       const vals = Object.values(starredMap);
       if (!vals.length) {
@@ -1280,7 +1687,6 @@ HTML_TEMPLATE = """<!doctype html>
       }
     });
 
-    // Theme persistence
     function applyTheme(mode) {
       document.documentElement.setAttribute("data-theme", mode);
       themeBtn.textContent = mode === "dark" ? "宣纸浅色" : "松烟深色";
@@ -1295,7 +1701,6 @@ HTML_TEMPLATE = """<!doctype html>
       applyTheme(cur === "dark" ? "light" : "dark");
     });
 
-    // Reading progress thread
     window.addEventListener("scroll", () => {
       const h = document.documentElement.scrollHeight - window.innerHeight;
       const pct = h > 0 ? Math.min(100, Math.max(0, (window.scrollY / h) * 100)) : 0;
