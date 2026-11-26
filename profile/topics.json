@@ -1,0 +1,286 @@
+{
+  "version": "1.1",
+  "timezone": "Asia/Shanghai",
+  "recall_philosophy": {
+    "fresh_high_recall": true,
+    "summary": "宽进严标、导读优先：不要因新作尚未沉淀或看起来不够突破而激进过滤；贴题近期新作尽量收录，通过 1-2 句白话导读 + 透明工程标签让读者一眼判断值不值得深读。",
+    "reading_tiers": {
+      "deep": "核心高价值论文（Tier 1 核心主线高贴题、真实在线评测、开源环境/代码/数据、在线 RL/Verifier、或高热老作/获奖作）：重点细写方法机制、实验条件与横向定位。",
+      "scan": "新作追踪条目（高召回覆盖，不漏潜力股）：保持完整结构化字段，重点把导读、与现有做法的核心差异和客观标签写清晰，方便读者 5 秒速扫自筛。"
+    }
+  },
+  "selection_windows": {
+    "fresh_preferred_days": 7,
+    "fresh_max_days": 14,
+    "popular_backlist_min_age_days": 15,
+    "popular_backlist_target_per_issue": [1, 3]
+  },
+  "topics": [
+    {
+      "id": "computer-use",
+      "name": "Computer Use",
+      "priority": "tier1",
+      "target_papers": [3, 6],
+      "max_papers": 12,
+      "focus": "可执行的桌面、网页、移动或跨应用任务；工具使用、OS/Shell/GUI 混合操作、长程规划、失误恢复、轨迹合成和实际任务成功率。",
+      "anchors": [
+        "OSWorld",
+        "AppWorld",
+        "AndroidWorld",
+        "PhoneWorld",
+        "WebArena",
+        "VisualWebArena",
+        "ClawGUI",
+        "SCALECUA"
+      ],
+      "arxiv_queries": [
+        "\"computer use\" AND agent",
+        "\"computer-use\" AND (agent OR benchmark OR OSWorld)",
+        "(\"desktop agent\" OR \"OS agent\") AND (execution OR trajectory OR planning)",
+        "\"cross-application\" AND agent AND (desktop OR mobile OR web)"
+      ],
+      "hard_exclusions": [
+        "与真实计算环境执行无关的纯文本对话或纯知识问答"
+      ],
+      "soft_tags": [
+        "real-eval",
+        "open-code",
+        "open-env",
+        "online-rl",
+        "multi-step-recovery",
+        "offline-only",
+        "no-code-yet"
+      ]
+    },
+    {
+      "id": "multimodal-coding",
+      "name": "多模态编程",
+      "priority": "tier2",
+      "target_papers": [2, 5],
+      "max_papers": 10,
+      "require_directions": true,
+      "subdirections": [
+        "Code→Video",
+        "Code→Image",
+        "Image→Code",
+        "Video→Code",
+        "3D Code",
+        "Other"
+      ],
+      "focus": "Code→Video、Code→Image、Image→Code、Video→Code、3D Code 五个子方向每天都查，允许真实可执行代码参与的其他跨模态方向（如 SVG/Manim/HTML/Shader/CAD/Blender 脚本生成与反推）。",
+      "anchors": [
+        "Coda-DaVinci",
+        "Design2Code",
+        "ChartMimic",
+        "BlenderGym"
+      ],
+      "arxiv_queries": [
+        "(\"image to code\" OR \"screenshot to code\" OR \"UI to code\" OR \"chart to code\")",
+        "(\"code to video\" OR \"programmatic video\" OR \"Manim\" OR \"scene program\") AND video",
+        "(\"SVG generation\" OR \"TikZ\" OR \"HTML generation\" OR \"code to image\") AND (code OR program)",
+        "(\"3D code\" OR \"CAD code\" OR \"Blender\" OR \"procedural 3D\") AND (LLM OR VLM OR code)"
+      ],
+      "hard_exclusions": [
+        "无可执行代码参与的普通文生图（T2I）、文生视频（T2V）或纯神经 3D 生成"
+      ],
+      "soft_tags": [
+        "executable-code",
+        "direct-render",
+        "guided-generation",
+        "open-code",
+        "benchmark"
+      ]
+    },
+    {
+      "id": "gui-agent",
+      "name": "GUI Agent",
+      "priority": "tier1",
+      "target_papers": [3, 6],
+      "max_papers": 12,
+      "focus": "UI 感知、grounding、状态验证、动作决策；重点关注真实交互、在线 RL、reward/verifier 设计、rollout 架构、多端迁移（Web/Mobile/Desktop）以及有明确条件说明的评测。",
+      "anchors": [
+        "SCALECUA",
+        "ClawGUI",
+        "BrowserGym",
+        "MobileGym",
+        "MAI-Gym",
+        "AndroidWorld",
+        "VisualWebArena"
+      ],
+      "arxiv_queries": [
+        "\"GUI agent\" OR \"GUI grounding\" OR \"mobile agent\"",
+        "\"web agent\" AND (RL OR \"reinforcement learning\" OR grounding OR trajectory)",
+        "(\"UI grounding\" OR \"screen grounding\" OR \"click prediction\") AND (VLM OR agent)",
+        "(\"GUI\" OR \"web agent\") AND (rollout OR verifier OR reward)"
+      ],
+      "hard_exclusions": [
+        "与界面交互无关的纯自然图像目标检测或通用视觉定位"
+      ],
+      "soft_tags": [
+        "online-rl",
+        "verifiable-reward",
+        "real-eval",
+        "open-code",
+        "open-data",
+        "offline-only",
+        "no-code-yet"
+      ]
+    },
+    {
+      "id": "env-scaling",
+      "name": "环境规模化",
+      "priority": "tier1",
+      "target_papers": [3, 6],
+      "max_papers": 12,
+      "focus": "可扩展的 Agent 环境合成、模拟器或 mock apps/websites、自动任务与验证器（verifier）生成、可复位状态、容器/沙盒调度与在线训练高吞吐基础设施。",
+      "anchors": [
+        "Gym-Anything",
+        "MAI-Gym",
+        "MobileGym",
+        "SoftwareGym",
+        "ScaleWoB",
+        "WEBLICA",
+        "BrowserGym",
+        "AppWorld"
+      ],
+      "arxiv_queries": [
+        "(\"environment synthesis\" OR \"synthetic environment\" OR \"mock app\" OR \"sandbox\") AND agent",
+        "(\"task generation\" OR \"verifier generation\" OR \"verifiable environment\") AND (agent OR RL)",
+        "(\"Gym\" OR \"RL environment\") AND (GUI OR web OR mobile OR software) AND (scaling OR scalable)",
+        "(\"containerized\" OR \"resettable\" OR \"rollout throughput\") AND agent AND environment"
+      ],
+      "hard_exclusions": [
+        "仅限传统低维 MuJoCo/Atari 且无环境合成或 Agent 系统泛化意义的常规 RL 控制论文"
+      ],
+      "soft_tags": [
+        "open-env",
+        "scalable-synthesis",
+        "verifiable-reward",
+        "online-rl",
+        "infra",
+        "no-code-yet"
+      ]
+    },
+    {
+      "id": "rsi",
+      "name": "递归自我改进",
+      "priority": "tier2",
+      "target_papers": [2, 5],
+      "max_papers": 10,
+      "focus": "迭代改善策略、技能、工具、代码或 Agent 系统本身；关注持出集迁移、多轮自我改进退化/坍缩分析，明确区分更新上下文/记忆、技能库、代码还是模型权重。",
+      "anchors": [
+        "Darwin Godel Machine",
+        "ADAS",
+        "Self-Evolving Agents",
+        "Absolute Zero"
+      ],
+      "arxiv_queries": [
+        "(\"self-improving\" OR \"self-improvement\" OR \"recursive self-improvement\") AND (agent OR LLM)",
+        "(\"self-evolving\" OR \"skill evolution\" OR \"automated agent design\") AND (agent OR LLM)",
+        "(\"self-play\" OR \"self-taught\" OR \"bootstrapping\") AND (agent OR tool OR code) AND (RL OR iteration)"
+      ],
+      "hard_exclusions": [
+        "金融技术指标 RSI（Relative Strength Index）或量化交易择时论文"
+      ],
+      "soft_tags": [
+        "weight-update",
+        "code-update",
+        "skill-update",
+        "context-update",
+        "held-out-eval",
+        "open-code"
+      ]
+    },
+    {
+      "id": "game-agent",
+      "name": "游戏智能体",
+      "priority": "tier2",
+      "target_papers": [2, 5],
+      "max_papers": 10,
+      "focus": "游戏中的学习、推理、长程规划、自动化玩测（playtesting）、可验证任务、游戏环境与基准，不限于游戏生成。",
+      "anchors": [
+        "Voyager",
+        "SIMA",
+        "Cradle",
+        "BALROG",
+        "GameBench"
+      ],
+      "arxiv_queries": [
+        "(\"game agent\" OR \"game-playing agent\" OR \"video game\") AND (LLM OR VLM OR RL)",
+        "(\"playtesting\" OR \"game testing\" OR \"game benchmark\") AND agent",
+        "(\"Minecraft\" OR \"StarCraft\" OR \"NetHack\" OR \"Pokemon\" OR \"Atari\") AND (VLM OR LLM) AND agent"
+      ],
+      "hard_exclusions": [
+        "仅研究博弈论纯数学均衡而无游戏环境/智能体实验的论文"
+      ],
+      "soft_tags": [
+        "open-env",
+        "online-rl",
+        "real-eval",
+        "benchmark",
+        "playtesting",
+        "open-code"
+      ]
+    },
+    {
+      "id": "world-model",
+      "name": "World Model",
+      "priority": "tier1",
+      "target_papers": [3, 6],
+      "max_papers": 12,
+      "focus": "优先 GUI / digital world model：界面、网页、文件、应用或 OS 的状态建模、转移预测、轨迹转环境、模拟训练与前瞻规划；区分像素截图预测、隐状态、结构化文本/DOM 树和真实可执行模拟。",
+      "anchors": [
+        "TRACE2WORLD",
+        "WildAWM",
+        "World Intelligence Agent",
+        "WEBLICA",
+        "WebDreamer"
+      ],
+      "arxiv_queries": [
+        "\"world model\" AND (GUI OR web OR mobile OR OS OR agent OR digital)",
+        "(\"trajectory to world\" OR \"action world model\" OR \"interactive world model\") AND (agent OR GUI OR web)",
+        "(\"state transition\" OR \"environment simulator\" OR \"next-state prediction\") AND (GUI OR web OR computer)"
+      ],
+      "hard_exclusions": [
+        "完全脱离交互与动作条件控制的纯视频生成模型（除非明确用于交互式环境模拟或动作条件状态转移）"
+      ],
+      "soft_tags": [
+        "state-modeling",
+        "pixel-wm",
+        "latent-wm",
+        "dom-text-wm",
+        "executable-sim",
+        "open-code",
+        "open-env"
+      ]
+    },
+    {
+      "id": "personal-agent",
+      "name": "Personal Agent",
+      "priority": "tier2",
+      "target_papers": [2, 5],
+      "max_papers": 10,
+      "focus": "长期记忆、用户偏好建模、私有工作空间、跨应用个人执行、持续适应、主动协助（proactive assistance）与安全权限边界。区分个人助理与特定企业岗位 SOP 学习。",
+      "anchors": [
+        "MyPCBench",
+        "ApprenticeBench"
+      ],
+      "arxiv_queries": [
+        "(\"personal agent\" OR \"personal assistant\" OR \"proactive assistant\") AND (LLM OR memory OR preference)",
+        "(\"long-term memory\" OR \"user preference\" OR \"lifelong personalization\") AND agent",
+        "(\"personal workspace\" OR \"desktop assistant\" OR \"permission boundary\") AND agent"
+      ],
+      "hard_exclusions": [
+        "纯推荐系统点击率（CTR）预测且无智能体交互/记忆/执行机制的传统广告论文"
+      ],
+      "soft_tags": [
+        "long-term-memory",
+        "preference-learning",
+        "proactive",
+        "privacy-permission",
+        "benchmark",
+        "open-code"
+      ]
+    }
+  ]
+}

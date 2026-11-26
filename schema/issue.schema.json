@@ -1,15 +1,19 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Daily Paper issue v1.0",
+  "title": "Daily Paper issue v1.1",
   "type": "object",
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": "1.0"
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
     },
     "date": {
       "type": "string",
-      "format": "date"
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
     "timezone": {
       "const": "Asia/Shanghai"
@@ -38,334 +42,74 @@
     },
     "sections": {
       "type": "array",
-      "minItems": 8,
-      "maxItems": 8,
-      "prefixItems": [
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "Computer Use"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "topic": {
+            "type": "string",
+            "minLength": 1
           },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
+          "priority": {
+            "enum": [
+              "tier1",
+              "tier2"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1
+          },
+          "papers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/paper"
+            },
+            "maxItems": 12
+          }
         },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "多模态编程"
+        "required": [
+          "topic",
+          "papers"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "papers": {
+                  "maxItems": 0
+                }
+              }
             },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper",
-                "required": [
-                  "directions"
-                ]
-              },
-              "maxItems": 8
+            "then": {
+              "required": [
+                "note"
+              ]
             }
           },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
+          {
+            "if": {
+              "properties": {
+                "topic": {
+                  "const": "多模态编程"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "papers": {
+                  "items": {
+                    "required": [
+                      "directions"
+                    ]
                   }
                 }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
               }
             }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "GUI Agent"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "环境规模化"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "递归自我改进"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "游戏智能体"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "World Model"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "topic": {
-              "const": "Personal Agent"
-            },
-            "note": {
-              "type": "string",
-              "minLength": 1
-            },
-            "papers": {
-              "type": "array",
-              "items": {
-                "$ref": "#/$defs/paper"
-              },
-              "maxItems": 8
-            }
-          },
-          "required": [
-            "topic",
-            "papers"
-          ],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "papers": {
-                    "maxItems": 0
-                  }
-                }
-              },
-              "then": {
-                "required": [
-                  "note"
-                ]
-              }
-            }
-          ]
-        }
-      ],
-      "items": false
+          }
+        ]
+      }
     }
   },
   "required": [
@@ -388,11 +132,21 @@
           "type": "string",
           "minLength": 1
         },
+        "authors_or_org": {
+          "type": "string",
+          "minLength": 1
+        },
         "published_on": {
           "type": "string",
-          "format": "date"
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
         },
         "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        },
+        "repo_url": {
           "type": "string",
           "format": "uri",
           "pattern": "^https://"
@@ -404,6 +158,28 @@
             "award",
             "supplement"
           ]
+        },
+        "reading_tier": {
+          "enum": [
+            "deep",
+            "scan"
+          ]
+        },
+        "secondary_topics": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
         },
         "intro": {
           "type": "string",
@@ -458,7 +234,8 @@
                   },
                   "observed_on": {
                     "type": "string",
-                    "format": "date"
+                    "format": "date",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
                   },
                   "approximate": {
                     "type": "boolean"

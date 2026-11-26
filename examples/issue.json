@@ -1,28 +1,62 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "date": "2026-11-26",
   "timezone": "Asia/Shanghai",
   "lead": {
-    "paper_id": "example:recent",
-    "reason": "展示私有环境的状态验证写法。"
+    "paper_id": "example:recent-deep",
+    "reason": "合成示例：展示 Tier 1 核心主线深读条目如何同时给出真实在线评测与工程信号标签。",
+    "section_ref": "Section 4.2, Table 2"
   },
   "sections": [
     {
       "topic": "Computer Use",
+      "priority": "tier1",
       "papers": [
         {
-          "id": "example:recent",
-          "title": "Synthetic Example: Verifying State Changes",
+          "id": "example:recent-deep",
+          "title": "Synthetic Example: Verifying Multi-App State Changes Online",
+          "authors_or_org": "Synthetic Research Lab",
           "published_on": "2026-11-24",
-          "url": "https://example.org/papers/recent",
+          "url": "https://example.org/papers/recent-deep",
+          "repo_url": "https://github.com/example/recent-deep",
           "lane": "fresh",
-          "intro": "合成示例：说明如何用可验证状态判断任务是否完成。",
-          "abstract_zh": "合成示例：此处记录完整摘要译述。",
-          "method": "合成示例：固定初始状态，执行任务，通过独立检查器读取结果。",
-          "results": "合成示例，无真实实验结果。",
-          "limitation": "合成示例，不适用于真实任务。",
+          "reading_tier": "deep",
+          "secondary_topics": [
+            "环境规模化"
+          ],
+          "tags": [
+            "open-code",
+            "open-env",
+            "verifiable-reward",
+            "real-eval"
+          ],
+          "intro": "合成示例：用可复位的独立状态检查器替代人工评估，让跨应用桌面任务能直接做在线 RL 验证。",
+          "abstract_zh": "合成示例：此处记录按原文顺序的完整简体中文摘要译述，包含研究背景、方法、评测设置与主要结论。",
+          "method": "合成示例：固定初始容器快照，Agent 执行多步桌面与命令行操作后，由独立状态检查器读取文件系统与应用数据库状态给出二元奖励。",
+          "results": "合成示例：无真实实验数据，真实日报需写清任务集、指标、基线、预算与对比表图。",
+          "limitation": "合成示例：仅用于契约与渲染管线调试，不代表真实研究结论。",
           "heat": {
-            "unavailable": "合成条目，无可核验记录。"
+            "unavailable": "合成条目，近期新作尚无可核验外部热度。"
+          }
+        },
+        {
+          "id": "example:recent-scan",
+          "title": "Synthetic Example: Early Exploration of Desktop Action Caching",
+          "published_on": "2026-11-25",
+          "url": "https://example.org/papers/recent-scan",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "tags": [
+            "no-code-yet",
+            "offline-only"
+          ],
+          "intro": "合成示例：提出缓存高频 UI 动作宏来降低长程桌面任务的重复规划开销，目前仅在离线轨迹上做了初步验证。",
+          "abstract_zh": "合成示例：此处保留完整摘要译述，供读者对导读感兴趣时展开查看。",
+          "method": "合成示例：从历史执行日志中抽取重复子序列并构造成宏动作供后续任务检索复用。",
+          "results": "合成示例：离线回放中减少步骤数，尚未在真实在线桌面环境中测试泛化性。",
+          "limitation": "合成示例：缺乏在线交互评测且未开源代码。",
+          "heat": {
+            "unavailable": "合成条目，发布仅 1 天暂无外部热度信号。"
           }
         },
         {
@@ -31,38 +65,44 @@
           "published_on": "2024-11-24",
           "url": "https://example.org/papers/older",
           "lane": "popular_backlist",
-          "intro": "合成示例：说明如何用可验证状态判断任务是否完成。",
+          "reading_tier": "deep",
+          "tags": [
+            "benchmark",
+            "open-env",
+            "real-eval"
+          ],
+          "intro": "合成示例：早期高热基准老作，展示如何记录可追溯的多维热度与入选证据。",
           "abstract_zh": "合成示例：此处记录完整摘要译述。",
-          "method": "合成示例：固定初始状态，执行任务，通过独立检查器读取结果。",
-          "results": "合成示例，无真实实验结果。",
-          "limitation": "合成示例，不适用于真实任务。",
+          "method": "合成示例：固定初始状态，执行跨应用任务，通过独立检查器读取结果。",
+          "results": "合成示例：无真实实验结果。",
+          "limitation": "合成示例：不适用于真实任务。",
           "heat": {
             "signals": [
               {
                 "kind": "citations",
                 "count": 12,
-                "source": "Synthetic Source",
+                "source": "OpenAlex",
                 "url": "https://example.org/citations",
                 "observed_on": "2026-11-26"
               },
               {
                 "kind": "votes",
                 "count": 7,
-                "source": "Synthetic Source",
+                "source": "Hugging Face Papers",
                 "url": "https://example.org/votes",
                 "observed_on": "2026-11-26"
               },
               {
                 "kind": "comments",
                 "count": 5,
-                "source": "Synthetic Source",
+                "source": "Hugging Face Papers",
                 "url": "https://example.org/comments",
                 "observed_on": "2026-11-26"
               },
               {
                 "kind": "stars",
                 "count": 10,
-                "source": "Synthetic Source",
+                "source": "GitHub",
                 "url": "https://example.org/stars",
                 "observed_on": "2026-11-26"
               }
@@ -70,7 +110,7 @@
           },
           "backlist_evidence": [
             {
-              "summary": "合成示例：展示如何引用该工作仍有影响力的证据。",
+              "summary": "合成示例：持续被后续基准引用，仍是跨应用评测的重要参考基线。",
               "url": "https://example.org/citations"
             }
           ]
@@ -79,37 +119,69 @@
     },
     {
       "topic": "多模态编程",
-      "note": "示例不含该方向，不代表真实检索结果。",
-      "papers": []
+      "priority": "tier2",
+      "note": "合成示例：五个子方向仅演示数据结构，不代表真实检索结果。",
+      "papers": [
+        {
+          "id": "example:code2video",
+          "title": "Synthetic Example: Scene-Program Constrained Video Synthesis",
+          "published_on": "2026-11-23",
+          "url": "https://example.org/papers/code2video",
+          "lane": "fresh",
+          "reading_tier": "scan",
+          "directions": [
+            "Code→Video"
+          ],
+          "tags": [
+            "executable-code",
+            "guided-generation",
+            "open-code"
+          ],
+          "intro": "合成示例：先生成可执行场景代码再约束视频扩散模型渲染，兼顾结构可控性与画面细节。",
+          "abstract_zh": "合成示例：此处记录完整摘要译述。",
+          "method": "合成示例：先由 LLM 生成可执行布局脚本，再将渲染出的结构先验注入视频生成模型。",
+          "results": "合成示例：无真实实验结果。",
+          "limitation": "合成示例：复杂物理交互仍受限于脚本表达能力。",
+          "heat": {
+            "unavailable": "合成条目，无可核验记录。"
+          }
+        }
+      ]
     },
     {
       "topic": "GUI Agent",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier1",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     },
     {
       "topic": "环境规模化",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier1",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     },
     {
       "topic": "递归自我改进",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier2",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     },
     {
       "topic": "游戏智能体",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier2",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     },
     {
       "topic": "World Model",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier1",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     },
     {
       "topic": "Personal Agent",
-      "note": "示例不含该方向，不代表真实检索结果。",
+      "priority": "tier2",
+      "note": "合成示例：不含该方向真实条目。",
       "papers": []
     }
   ]
