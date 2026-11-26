@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-11-26",
+  "timezone": "Asia/Shanghai",
+  "lead": {
+    "paper_id": "example:recent",
+    "reason": "展示私有环境的状态验证写法。"
+  },
+  "sections": [
+    {
+      "topic": "Computer Use",
+      "papers": [
+        {
+          "id": "example:recent",
+          "title": "Synthetic Example: Verifying State Changes",
+          "published_on": "2026-11-24",
+          "url": "https://example.org/papers/recent",
+          "lane": "fresh",
+          "intro": "合成示例：说明如何用可验证状态判断任务是否完成。",
+          "abstract_zh": "合成示例：此处记录完整摘要译述。",
+          "method": "合成示例：固定初始状态，执行任务，通过独立检查器读取结果。",
+          "results": "合成示例，无真实实验结果。",
+          "limitation": "合成示例，不适用于真实任务。",
+          "heat": {
+            "unavailable": "合成条目，无可核验记录。"
+          }
+        },
+        {
+          "id": "example:older",
+          "title": "Synthetic Example: Benchmarking Multi-App Work",
+          "published_on": "2024-11-24",
+          "url": "https://example.org/papers/older",
+          "lane": "popular_backlist",
+          "intro": "合成示例：说明如何用可验证状态判断任务是否完成。",
+          "abstract_zh": "合成示例：此处记录完整摘要译述。",
+          "method": "合成示例：固定初始状态，执行任务，通过独立检查器读取结果。",
+          "results": "合成示例，无真实实验结果。",
+          "limitation": "合成示例，不适用于真实任务。",
+          "heat": {
+            "signals": [
+              {
+                "kind": "citations",
+                "count": 12,
+                "source": "Synthetic Source",
+                "url": "https://example.org/citations",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "votes",
+                "count": 7,
+                "source": "Synthetic Source",
+                "url": "https://example.org/votes",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "comments",
+                "count": 5,
+                "source": "Synthetic Source",
+                "url": "https://example.org/comments",
+                "observed_on": "2026-11-26"
+              },
+              {
+                "kind": "stars",
+                "count": 10,
+                "source": "Synthetic Source",
+                "url": "https://example.org/stars",
+                "observed_on": "2026-11-26"
+              }
+            ]
+          },
+          "backlist_evidence": [
+            {
+              "summary": "合成示例：展示如何引用该工作仍有影响力的证据。",
+              "url": "https://example.org/citations"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "多模态编程",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "GUI Agent",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "环境规模化",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "递归自我改进",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "游戏智能体",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "World Model",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    },
+    {
+      "topic": "Personal Agent",
+      "note": "示例不含该方向，不代表真实检索结果。",
+      "papers": []
+    }
+  ]
+}
